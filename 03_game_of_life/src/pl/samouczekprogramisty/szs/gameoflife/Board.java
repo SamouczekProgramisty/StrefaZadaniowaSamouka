@@ -14,38 +14,51 @@ public class Board {
     public static final String BOARD_HORIZONTAL_BORDER = "-";
     public static final String BOARD_CORNER = "+";
 
-    public static final String DEAD_CELL = " ";
-    private final int size;
+    public static final String DEAD_CELL = Cell.CellState.DEAD.getRepresentation();
+    public static final String LIVE_CELL = Cell.CellState.LIVE.getRepresentation();
 
-    public Board(int size) {
+    private final Cell[][] board;
+
+    public Board(int size, Cell... cells) {
         if (size < 1) {
             throw new IllegalArgumentException(String.format("Size %d is illegal!", size));
         }
-        this.size = size;
+        this.board = new Cell[size][];
+        for (int rowIndex = 0; rowIndex < size; rowIndex++) {
+            this.board[rowIndex] = new Cell[size];
+            for (int columnIndex = 0; columnIndex < size; columnIndex++) {
+                this.board[rowIndex][columnIndex] = Cell.dead(rowIndex, columnIndex);
+            }
+        }
+        for(Cell cell : cells) {
+            this.board[cell.getRowIndex()][cell.getColumnIndex()] = cell;
+        }
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        createTopBottomLine(builder);
+        builder.append(createTopBottomLine(board.length));
         builder.append(System.lineSeparator());
-        for(int rowNumber = 0; rowNumber < size; rowNumber++) {
+        for(Cell[] row : board) {
             builder.append(BOARD_VERTICAL_BORDER);
-            for(int columnNumber = 0; columnNumber < size; columnNumber++) {
-                builder.append(DEAD_CELL);
+            for(Cell cell : row) {
+                builder.append(cell);
             }
             builder.append(BOARD_VERTICAL_BORDER);
             builder.append(System.lineSeparator());
         }
-        createTopBottomLine(builder);
+        builder.append(createTopBottomLine(board.length));
         return builder.toString();
     }
 
-    private void createTopBottomLine(StringBuilder builder) {
-        builder.append(BOARD_CORNER);
+    private String createTopBottomLine(int size) {
+        StringBuilder line = new StringBuilder();
+        line.append(BOARD_CORNER);
         for(int i = 0; i < size; i++) {
-            builder.append(BOARD_HORIZONTAL_BORDER);
+            line.append(BOARD_HORIZONTAL_BORDER);
         }
-        builder.append(BOARD_CORNER);
+        line.append(BOARD_CORNER);
+        return line.toString();
     }
 }

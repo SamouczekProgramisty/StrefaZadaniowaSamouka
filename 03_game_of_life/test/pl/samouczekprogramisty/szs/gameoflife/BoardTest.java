@@ -2,8 +2,8 @@ package pl.samouczekprogramisty.szs.gameoflife;
 
 import org.junit.Test;
 
-import static junit.framework.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class BoardTest {
     @Test
@@ -27,4 +27,12 @@ public class BoardTest {
         new Board(-10);
     }
 
+    @Test
+    public void shouldBeAbleToCreateBoardWithCells() {
+        String boardVisualisation = "+-+" + System.lineSeparator() +
+                                    "|o|" + System.lineSeparator() +
+                                    "+-+";
+        Board board = new Board(1, Cell.live(0, 0));
+        assertEquals(boardVisualisation, board.toString());
+    }
 }
