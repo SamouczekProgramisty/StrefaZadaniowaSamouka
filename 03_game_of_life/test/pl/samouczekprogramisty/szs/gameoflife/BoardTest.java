@@ -35,4 +35,5 @@ public class BoardTest {
         Board board = new Board(1, Cell.live(0, 0));
         assertEquals(boardVisualisation, board.toString());
     }
+
 }

@@ -10,14 +10,40 @@ package pl.samouczekprogramisty.szs.gameoflife;
 
 
 public class Board {
-    public static final String BOARD_VERTICAL_BORDER = "|";
-    public static final String BOARD_HORIZONTAL_BORDER = "-";
-    public static final String BOARD_CORNER = "+";
-
-    public static final String DEAD_CELL = Cell.CellState.DEAD.getRepresentation();
-    public static final String LIVE_CELL = Cell.CellState.LIVE.getRepresentation();
-
     private final Cell[][] board;
+
+    private static class BordVisualisation {
+        private static final String BOARD_VERTICAL_BORDER = "|";
+        private static final String BOARD_HORIZONTAL_BORDER = "-";
+        private static final String BOARD_CORNER = "+";
+
+        public static String toString(Board b) {
+            Cell[][] board = b.board;
+            StringBuilder builder = new StringBuilder();
+            builder.append(createTopBottomLine(board.length));
+            builder.append(System.lineSeparator());
+            for(Cell[] row : board) {
+                builder.append(BOARD_VERTICAL_BORDER);
+                for(Cell cell : row) {
+                    builder.append(cell);
+                }
+                builder.append(BOARD_VERTICAL_BORDER);
+                builder.append(System.lineSeparator());
+            }
+            builder.append(createTopBottomLine(board.length));
+            return builder.toString();
+        }
+
+        private static String createTopBottomLine(int size) {
+            StringBuilder line = new StringBuilder();
+            line.append(BOARD_CORNER);
+            for(int i = 0; i < size; i++) {
+                line.append(BOARD_HORIZONTAL_BORDER);
+            }
+            line.append(BOARD_CORNER);
+            return line.toString();
+        }
+    }
 
     public Board(int size, Cell... cells) {
         if (size < 1) {
@@ -37,28 +63,6 @@ public class Board {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(createTopBottomLine(board.length));
-        builder.append(System.lineSeparator());
-        for(Cell[] row : board) {
-            builder.append(BOARD_VERTICAL_BORDER);
-            for(Cell cell : row) {
-                builder.append(cell);
-            }
-            builder.append(BOARD_VERTICAL_BORDER);
-            builder.append(System.lineSeparator());
-        }
-        builder.append(createTopBottomLine(board.length));
-        return builder.toString();
-    }
-
-    private String createTopBottomLine(int size) {
-        StringBuilder line = new StringBuilder();
-        line.append(BOARD_CORNER);
-        for(int i = 0; i < size; i++) {
-            line.append(BOARD_HORIZONTAL_BORDER);
-        }
-        line.append(BOARD_CORNER);
-        return line.toString();
+        return BordVisualisation.toString(this);
     }
 }
