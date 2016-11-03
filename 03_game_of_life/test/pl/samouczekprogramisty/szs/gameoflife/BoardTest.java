@@ -36,4 +36,19 @@ public class BoardTest {
         assertEquals(boardVisualisation, board.toString());
     }
 
+    @Test
+    public void shouldBeAbleToCreateBiggerBoard() {
+        String boardVisualisation = "+-------+" + System.lineSeparator() +
+                                    "|       |" + System.lineSeparator() +
+                                    "|       |" + System.lineSeparator() +
+                                    "|       |" + System.lineSeparator() +
+                                    "|       |" + System.lineSeparator() +
+                                    "|ooo    |" + System.lineSeparator() +
+                                    "|       |" + System.lineSeparator() +
+                                    "|       |" + System.lineSeparator() +
+                                    "+-------+";
+        Board board = new Board(7, Cell.live(0, 4), Cell.live(1, 4), Cell.live(2, 4));
+        assertEquals(boardVisualisation, board.toString());
+    }
+
 }
