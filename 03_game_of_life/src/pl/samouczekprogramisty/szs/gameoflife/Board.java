@@ -66,4 +66,7 @@ public class Board {
     public String toString() {
         return BordVisualisation.toString(this);
     }
+
+    public void nextGeneration() {
+    }
 }
