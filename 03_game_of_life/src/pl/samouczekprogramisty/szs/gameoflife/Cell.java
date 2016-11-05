@@ -5,7 +5,7 @@ public class Cell {
     private final int rowIndex;
     private final int columnIndex;
 
-    public Cell(CellState state, int columnIndex, int rowIndex) {
+    private Cell(CellState state, int columnIndex, int rowIndex) {
         this.state = state;
         this.rowIndex = rowIndex;
         this.columnIndex = columnIndex;
@@ -17,6 +17,10 @@ public class Cell {
 
     public static Cell dead(int columnIndex, int rowIndex) {
         return new Cell(CellState.DEAD, columnIndex, rowIndex);
+    }
+
+    public Cell flip() {
+        return new Cell(state.flip(), columnIndex, rowIndex);
     }
 
     @Override
@@ -32,11 +36,15 @@ public class Cell {
         return columnIndex;
     }
 
+    public CellState getState() {
+        return state;
+    }
+
     public enum CellState {
         LIVE("o"),
         DEAD(" ");
 
-        private String representation;
+        private final String representation;
 
         CellState(String representation) {
             this.representation = representation;
@@ -44,6 +52,13 @@ public class Cell {
 
         public String getRepresentation() {
             return representation;
+        }
+
+        public CellState flip() {
+            if (this == LIVE) {
+                return DEAD;
+            }
+            return LIVE;
         }
     }
 }
