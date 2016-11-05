@@ -28,20 +28,27 @@ public class Console implements BoardRenerer {
     }
 
     public String boardToString() {
-        Cell[][] board = this.board.board;
         StringBuilder builder = new StringBuilder();
-        builder.append(createTopBottomLine(this.board.getSize()));
+        int size = board.getSize();
+        builder.append(createTopBottomLine(size));
         builder.append(System.lineSeparator());
-        for(int rowIndex = 1; rowIndex <= board.length; rowIndex++) {
-            Cell[] row = board[board.length - rowIndex];
-            builder.append(BOARD_VERTICAL_BORDER);
-            for(Cell cell : row) {
-                builder.append(cell.toSimpleString());
+
+        int columnIndex = 0;
+
+        for (Cell cell : board.getCellsTopBottom()) {
+            if (columnIndex == 0) {
+                builder.append(BOARD_VERTICAL_BORDER);
             }
-            builder.append(BOARD_VERTICAL_BORDER);
-            builder.append(System.lineSeparator());
+            builder.append(cell.toSimpleString());
+            columnIndex++;
+            if (columnIndex == size) {
+                builder.append(BOARD_VERTICAL_BORDER);
+                builder.append(System.lineSeparator());
+                columnIndex = 0;
+            }
         }
-        builder.append(createTopBottomLine(board.length));
+
+        builder.append(createTopBottomLine(size));
         return builder.toString();
     }
 
