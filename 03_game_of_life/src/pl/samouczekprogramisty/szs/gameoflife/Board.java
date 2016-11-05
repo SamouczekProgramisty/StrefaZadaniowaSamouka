@@ -12,6 +12,7 @@ public class Board {
     // FIXME This property musn't be public!
     public final Cell[][] board;
     private final int size;
+    private final Console visualisation;
 
     private static class Coordinates {
         private final int rowIndex;
@@ -25,7 +26,7 @@ public class Board {
 
     @Override
     public String toString() {
-        return new Console(this).boardToString();
+        return visualisation.boardToString();
     }
 
     public Board(int size, Cell... cells) {
@@ -34,6 +35,7 @@ public class Board {
         }
         this.board = new Cell[size][size];
         this.size = size;
+        this.visualisation = new Console(this);
 
         for (Coordinates coordinates : iterateOverCells()) {
             setCell(Cell.dead(coordinates.columnIndex, coordinates.rowIndex));
@@ -47,6 +49,8 @@ public class Board {
     private Board(Cell[][] state) {
         board = new Cell[state.length][];
         size = state.length;
+        visualisation = new Console(this);
+
         for (int index = 0; index < state.length; index++) {
             board[index] = Arrays.copyOf(state[index], state[index].length);
         }
@@ -55,8 +59,7 @@ public class Board {
     public Board nextGeneration() {
         Board nextGeneration = new Board(board);
 
-        for (Coordinates coordinates : iterateOverCells()) {
-            Cell cell = getCell(coordinates.columnIndex, coordinates.rowIndex);
+        for (Cell cell : getCells()) {
             nextGeneration.setCell(cell.nextGeneration(this));
         }
 
@@ -71,6 +74,16 @@ public class Board {
         columnIndex = normalizeIndex(columnIndex);
         rowIndex = normalizeIndex(rowIndex);
         return board[rowIndex][columnIndex];
+    }
+
+    public List<Cell> getCells() {
+        List<Cell> boardsCells = new LinkedList<>();
+
+        for (Coordinates coordinates : iterateOverCells()) {
+            boardsCells.add(getCell(coordinates.columnIndex, coordinates.rowIndex));
+        }
+
+        return boardsCells;
     }
 
     private void setCell(Cell cell) {
