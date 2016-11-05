@@ -11,7 +11,6 @@ public class Board {
     // TODO it's just a step to have proper visualisation code!
     // FIXME This property musn't be public!
     public final Cell[][] board;
-    private final int size;
     private final Console visualisation;
 
     private static class Coordinates {
@@ -34,7 +33,6 @@ public class Board {
             throw new IllegalArgumentException(String.format("Size %d is illegal!", size));
         }
         this.board = new Cell[size][size];
-        this.size = size;
         this.visualisation = new Console(this);
 
         for (Coordinates coordinates : iterateOverCells()) {
@@ -48,7 +46,6 @@ public class Board {
 
     private Board(Cell[][] state) {
         board = new Cell[state.length][];
-        size = state.length;
         visualisation = new Console(this);
 
         for (int index = 0; index < state.length; index++) {
@@ -67,7 +64,7 @@ public class Board {
     }
 
     public int getSize() {
-        return size;
+        return board.length;
     }
 
     public Cell getCell(int columnIndex, int rowIndex) {
