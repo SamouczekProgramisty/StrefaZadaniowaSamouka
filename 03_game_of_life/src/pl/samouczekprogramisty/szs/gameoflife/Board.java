@@ -80,17 +80,6 @@ public class Board {
         return boardsCells;
     }
 
-    // FIXME: remove, it's just temporary for ease of border rendering
-    public List<Cell> getCellsTopBottom() {
-        List<Cell> boardsCells = new LinkedList<>();
-
-        for (Coordinates coordinates : iterateOverCellsTopBottom()) {
-            boardsCells.add(getCell(coordinates.columnIndex, coordinates.rowIndex));
-        }
-
-        return boardsCells;
-    }
-
     private void setCell(Cell cell) {
         board[cell.getRowIndex()][cell.getColumnIndex()] = cell;
     }
@@ -103,17 +92,6 @@ public class Board {
     }
 
     private List<Coordinates> iterateOverCells() {
-        List<Coordinates> returnValue = new LinkedList<>();
-        for(int rowIndex = 0; rowIndex < board.length; rowIndex++) {
-            for(int columnIndex = 0; columnIndex < board.length; columnIndex++) {
-                returnValue.add(new Coordinates(columnIndex, rowIndex));
-            }
-        }
-        return returnValue;
-    }
-
-    // FIXME: same as above, remove
-    private List<Coordinates> iterateOverCellsTopBottom() {
         List<Coordinates> returnValue = new LinkedList<>();
         for(int rowIndex = board.length - 1 ; rowIndex >=0; rowIndex--) {
             for(int columnIndex = 0; columnIndex < board.length; columnIndex++) {

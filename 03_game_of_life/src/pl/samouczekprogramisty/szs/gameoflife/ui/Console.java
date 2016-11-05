@@ -35,7 +35,7 @@ public class Console implements BoardRenerer {
 
         int columnIndex = 0;
 
-        for (Cell cell : board.getCellsTopBottom()) {
+        for (Cell cell : board.getCells()) {
             if (columnIndex == 0) {
                 builder.append(BOARD_VERTICAL_BORDER);
             }
