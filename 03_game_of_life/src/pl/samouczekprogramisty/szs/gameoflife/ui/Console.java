@@ -5,7 +5,7 @@ import pl.samouczekprogramisty.szs.gameoflife.Cell;
 
 import java.io.PrintStream;
 
-public class Console {
+public class Console implements BoardRenerer {
     private static final String BOARD_VERTICAL_BORDER = "|";
     private static final String BOARD_HORIZONTAL_BORDER = "-";
     private static final String BOARD_CORNER = "+";
@@ -13,9 +13,18 @@ public class Console {
     private final Board board;
     private final PrintStream outputStream;
 
+    public Console(Board board) {
+        this(board, System.out);
+    }
+
     public Console(Board board, PrintStream outputStream) {
         this.board = board;
         this.outputStream = outputStream;
+    }
+
+    @Override
+    public void renderBoard() {
+        outputStream.print(boardToString());
     }
 
     public String boardToString() {

@@ -20,7 +20,7 @@ public class BoardTest {
                           "|   |" + System.lineSeparator() +
                           "+---+" ;
         Board board = new Board(3);
-        assertEquals(expected, new Console(board, System.out).boardToString());
+        assertEquals(expected, new Console(board).boardToString());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -41,7 +41,7 @@ public class BoardTest {
                                     "|o  |" + System.lineSeparator() +
                                     "+---+";
         Board board = new Board(3, Cell.live(0, 0));
-        assertEquals(boardVisualisation, new Console(board, System.out).boardToString());
+        assertEquals(boardVisualisation, board.toString());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class BoardTest {
                                     "|       |" + System.lineSeparator() +
                                     "+-------+";
         Board board = new Board(7, Cell.live(0, 2), Cell.live(1, 2), Cell.live(2, 2));
-        assertEquals(boardVisualisation, new Console(board, System.out).boardToString());
+        assertEquals(boardVisualisation, board.toString());
     }
 
     @Test
@@ -67,7 +67,7 @@ public class BoardTest {
                                     "|   |" + System.lineSeparator() +
                                     "+---+";
         Board board = new Board(3, Cell.live(1, 1));
-        assertEquals(boardVisualisation, new Console(board, System.out).boardToString());
+        assertEquals(boardVisualisation, board.toString());
 
         String nextGeneration = "+---+" + System.lineSeparator() +
                                 "|   |" + System.lineSeparator() +
@@ -75,7 +75,7 @@ public class BoardTest {
                                 "|   |" + System.lineSeparator() +
                                 "+---+";
         Board boardNextGeneration = board.nextGeneration();
-        assertEquals(nextGeneration, new Console(boardNextGeneration, System.out).boardToString());
+        assertEquals(nextGeneration, boardNextGeneration.toString());
     }
 
     @Test
@@ -86,7 +86,7 @@ public class BoardTest {
                                     "| o |" + System.lineSeparator() +
                                     "+---+";
         Board board = new Board(3, Cell.live(1, 0), Cell.live(1, 1), Cell.live(1, 2));
-        assertEquals(boardVisualisation, new Console(board, System.out).boardToString());
+        assertEquals(boardVisualisation, board.toString());
 
         board.nextGeneration();
         assertEquals(boardVisualisation, new Console(board, System.out).boardToString());
@@ -101,7 +101,7 @@ public class BoardTest {
                                     "| o  |" + System.lineSeparator() +
                                     "+----+";
         Board board = new Board(4, Cell.live(1, 0), Cell.live(1, 1), Cell.live(1, 2));
-        assertEquals(boardVisualisation, new Console(board, System.out).boardToString());
+        assertEquals(boardVisualisation, board.toString());
 
         String expected = "+----+" + System.lineSeparator() +
                           "|    |" + System.lineSeparator() +
@@ -110,7 +110,7 @@ public class BoardTest {
                           "|    |" + System.lineSeparator() +
                           "+----+";
         Board boardNextGeneration = board.nextGeneration();
-        assertEquals(expected, new Console(boardNextGeneration, System.out).boardToString());
+        assertEquals(expected, boardNextGeneration.toString());
     }
 
     @Test
@@ -123,7 +123,7 @@ public class BoardTest {
                                     "|     |" + System.lineSeparator() +
                                     "+-----+";
         Board board = new Board(5, Cell.live(0, 2), Cell.live(1, 2), Cell.live(2, 2), Cell.live(2, 3), Cell.live(1, 4));
-        assertEquals(boardVisualisation, new Console(board, System.out).boardToString());
+        assertEquals(boardVisualisation, board.toString());
 
         // https://en.wikipedia.org/wiki/Glider_(Conway%27s_Life)
         // glider's period is 4
@@ -135,6 +135,6 @@ public class BoardTest {
                           "|     |" + System.lineSeparator() +
                           "+-----+";
         board = board.nextGeneration().nextGeneration().nextGeneration().nextGeneration();
-        assertEquals(expected, new Console(board, System.out).boardToString());
+        assertEquals(expected, board.toString());
     }
 }

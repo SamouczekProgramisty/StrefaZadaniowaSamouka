@@ -1,5 +1,7 @@
 package pl.samouczekprogramisty.szs.gameoflife;
 
+import pl.samouczekprogramisty.szs.gameoflife.ui.Console;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,6 +21,11 @@ public class Board {
             this.columnIndex = columnIndex;
             this.rowIndex = rowIndex;
         }
+    }
+
+    @Override
+    public String toString() {
+        return new Console(this).boardToString();
     }
 
     public Board(int size, Cell... cells) {
