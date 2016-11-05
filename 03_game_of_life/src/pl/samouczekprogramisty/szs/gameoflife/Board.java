@@ -46,11 +46,11 @@ public class Board {
         this.board = new Cell[size][size];
         for (int rowIndex = 0; rowIndex < size; rowIndex++) {
             for (int columnIndex = 0; columnIndex < size; columnIndex++) {
-                this.board[rowIndex][columnIndex] = Cell.dead(columnIndex, rowIndex);
+                setCell(Cell.dead(columnIndex, rowIndex));
             }
         }
         for(Cell cell : cells) {
-            this.board[cell.getRowIndex()][cell.getColumnIndex()] = cell;
+            setCell(cell);
         }
     }
 
@@ -70,10 +70,9 @@ public class Board {
         Board nextGeneration = new Board(board);
 
         for(int rowIndex = 0; rowIndex < board.length; rowIndex++) {
-            Cell[] row = board[rowIndex];
             for(int columnIndex = 0; columnIndex < board.length; columnIndex++) {
-                Cell cell = row[columnIndex];
-                nextGeneration.board[rowIndex][columnIndex] = cell.nextGeneration(this);
+                Cell cell = getCell(columnIndex, rowIndex);
+                nextGeneration.setCell(cell.nextGeneration(this));
             }
         }
         return nextGeneration;
@@ -83,6 +82,10 @@ public class Board {
         columnIndex = normalizeIndex(columnIndex);
         rowIndex = normalizeIndex(rowIndex);
         return board[rowIndex][columnIndex];
+    }
+
+    private void setCell(Cell cell) {
+        board[cell.getRowIndex()][cell.getColumnIndex()] = cell;
     }
 
     private int normalizeIndex(int index) {
