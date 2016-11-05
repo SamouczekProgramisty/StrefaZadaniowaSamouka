@@ -1,5 +1,6 @@
 package pl.samouczekprogramisty.szs.gameoflife;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,6 +41,10 @@ public class Cell {
         return String.format(TO_STRING_FORMAT, state, columnIndex, rowIndex);
     }
 
+    public String toSimpleString() {
+        return state.getRepresentation();
+    }
+
     public static Cell live(int columnIndex, int rowIndex) {
         return new Cell(CellState.LIVE, columnIndex, rowIndex);
     }
@@ -65,7 +70,16 @@ public class Cell {
     }
 
     public List<Cell> getNeighbours(Board board) {
-        return null;
+        List<Cell> neighbours = new LinkedList<>();
+        for (int rowDelta = -1; rowDelta <= 1; rowDelta++) {
+            for (int columnDelata = -1; columnDelata <= 1; columnDelata++) {
+                if (rowDelta == 0 && columnDelata == 0) {
+                    continue;
+                }
+                neighbours.add(board.getCell(columnIndex + columnDelata, rowIndex + rowDelta));
+            }
+        }
+        return neighbours;
     }
 
     public enum CellState {

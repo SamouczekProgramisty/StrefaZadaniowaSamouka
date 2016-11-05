@@ -10,6 +10,8 @@ package pl.samouczekprogramisty.szs.gameoflife;
 //Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 
 
+import java.util.Arrays;
+
 public class Board {
     private final Cell[][] board;
 
@@ -26,7 +28,7 @@ public class Board {
             for(Cell[] row : board) {
                 builder.append(BOARD_VERTICAL_BORDER);
                 for(Cell cell : row) {
-                    builder.append(cell);
+                    builder.append(cell.toSimpleString());
                 }
                 builder.append(BOARD_VERTICAL_BORDER);
                 builder.append(System.lineSeparator());
@@ -62,13 +64,33 @@ public class Board {
         }
     }
 
+    private Board(Cell[][] state) {
+        board = new Cell[state.length][];
+        for (int index = 0; index < state.length; index++) {
+            board[index] = Arrays.copyOf(state[index], state[index].length);
+        }
+    }
+
     @Override
     public String toString() {
         return BordVisualisation.toString(this);
     }
 
     public Board nextGeneration() {
-        return null;
+        Board nextGeneration = new Board(board);
+        return nextGeneration;
     }
 
+    public Cell getCell(int columnIndex, int rowIndex) {
+        columnIndex = normalizeIndex(columnIndex);
+        rowIndex = normalizeIndex(rowIndex);
+        return board[rowIndex][columnIndex];
+    }
+
+    private int normalizeIndex(int index) {
+        int size = board.length;
+        // This magic line makes the board "infinite".
+        // It makes that the "neighbour" of the first row/column is the last row/column.
+        return (index + size) % size;
+    }
 }
