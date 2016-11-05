@@ -60,16 +60,16 @@ public class BoardTest {
     @Test
     public void shouldBeAbleToCreateNextGeneration() {
         String boardVisualisation = "+---+" + System.lineSeparator() +
+                                    "|   |" + System.lineSeparator() +
                                     "| o |" + System.lineSeparator() +
-                                    "| o |" + System.lineSeparator() +
-                                    "| o |" + System.lineSeparator() +
+                                    "|   |" + System.lineSeparator() +
                                     "+---+";
-        Board board = new Board(3, Cell.live(1, 0), Cell.live(1, 1), Cell.live(1, 2));
+        Board board = new Board(3, Cell.live(1, 1));
         assertEquals(boardVisualisation, board.toString());
 
         String nextGeneration = "+---+" + System.lineSeparator() +
                                 "|   |" + System.lineSeparator() +
-                                "|ooo|" + System.lineSeparator() +
+                                "|   |" + System.lineSeparator() +
                                 "|   |" + System.lineSeparator() +
                                 "+---+";
         Board boardNextGeneration = board.nextGeneration();
@@ -79,13 +79,31 @@ public class BoardTest {
     @Test
     public void shouldBeImmutable() {
         String boardVisualisation = "+---+" + System.lineSeparator() +
-                "| o |" + System.lineSeparator() +
-                "| o |" + System.lineSeparator() +
-                "| o |" + System.lineSeparator() +
-                "+---+";
+                                    "| o |" + System.lineSeparator() +
+                                    "| o |" + System.lineSeparator() +
+                                    "| o |" + System.lineSeparator() +
+                                    "+---+";
         Board board = new Board(3, Cell.live(1, 0), Cell.live(1, 1), Cell.live(1, 2));
         assertEquals(boardVisualisation, board.toString());
         board.nextGeneration();
         assertEquals(boardVisualisation, board.toString());
+    }
+
+    @Test
+    public void shouldBeAbleToProvideNextGenerationWithPeriod() {
+        String boardVisualisation = "+---+" + System.lineSeparator() +
+                                    "| o |" + System.lineSeparator() +
+                                    "| o |" + System.lineSeparator() +
+                                    "| o |" + System.lineSeparator() +
+                                    "+---+";
+        Board board = new Board(3, Cell.live(1, 0), Cell.live(1, 1), Cell.live(1, 2));
+        assertEquals(boardVisualisation, board.toString());
+        String expected = "+---+" + System.lineSeparator() +
+                          "|   |" + System.lineSeparator() +
+                          "|ooo|" + System.lineSeparator() +
+                          "|   |" + System.lineSeparator() +
+                          "+---+";
+        Board boardNextGeneration = board.nextGeneration();
+        assertEquals(expected, boardNextGeneration.toString());
     }
 }

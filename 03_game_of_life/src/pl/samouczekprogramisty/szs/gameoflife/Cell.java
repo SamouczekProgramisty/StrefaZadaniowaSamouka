@@ -82,6 +82,35 @@ public class Cell {
         return neighbours;
     }
 
+    public boolean isLive() {
+        return state.isLive();
+    }
+
+    public Cell nextGeneration(Board board) {
+        int liveNeighbours = 0;
+        for(Cell cell : getNeighbours(board)) {
+            liveNeighbours += cell.isLive() ? 1 : 0;
+        }
+
+        if (isLive()) {
+            switch (liveNeighbours) {
+                // Any live cell with two or three live neighbours lives on to the next generation.
+                case 2:
+                case 3:
+                    return this;
+                // Any live cell with fewer than two live neighbours dies, as if caused by under-population.
+                // Any live cell with more than three live neighbours dies, as if by over-population.
+                default:
+                    return flip();
+            }
+        }
+        // Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+        if (liveNeighbours == 3) {
+            return flip();
+        }
+        return this;
+    }
+
     public enum CellState {
         LIVE("o"),
         DEAD(" ");
@@ -101,6 +130,10 @@ public class Cell {
                 return DEAD;
             }
             return LIVE;
+        }
+
+        public boolean isLive() {
+            return this == LIVE;
         }
     }
 }
