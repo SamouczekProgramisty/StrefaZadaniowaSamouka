@@ -11,4 +11,10 @@ public class CellTest {
         Cell flipped = cell.flip();
         assertEquals(Cell.CellState.LIVE, flipped.getState());
     }
+
+    @Test
+    public void shouldBeImmutable() {
+        Cell cell = Cell.live(0, 0);
+        assertNotSame(cell, cell.flip());
+    }
 }
