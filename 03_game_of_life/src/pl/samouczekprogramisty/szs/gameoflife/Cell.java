@@ -17,6 +17,14 @@ public class Cell {
         this.columnIndex = columnIndex;
     }
 
+    public static Cell live(int columnIndex, int rowIndex) {
+        return new Cell(CellState.LIVE, columnIndex, rowIndex);
+    }
+
+    public static Cell dead(int columnIndex, int rowIndex) {
+        return new Cell(CellState.DEAD, columnIndex, rowIndex);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -43,14 +51,6 @@ public class Cell {
 
     public String toSimpleString() {
         return state.getRepresentation();
-    }
-
-    public static Cell live(int columnIndex, int rowIndex) {
-        return new Cell(CellState.LIVE, columnIndex, rowIndex);
-    }
-
-    public static Cell dead(int columnIndex, int rowIndex) {
-        return new Cell(CellState.DEAD, columnIndex, rowIndex);
     }
 
     public Cell flip() {

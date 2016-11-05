@@ -25,7 +25,8 @@ public class Board {
             StringBuilder builder = new StringBuilder();
             builder.append(createTopBottomLine(board.length));
             builder.append(System.lineSeparator());
-            for(Cell[] row : board) {
+            for(int rowIndex = 1; rowIndex <= board.length; rowIndex++) {
+                Cell[] row = board[board.length - rowIndex];
                 builder.append(BOARD_VERTICAL_BORDER);
                 for(Cell cell : row) {
                     builder.append(cell.toSimpleString());
@@ -49,12 +50,11 @@ public class Board {
     }
 
     public Board(int size, Cell... cells) {
-        if (size < 1) {
+        if (size < 3) {
             throw new IllegalArgumentException(String.format("Size %d is illegal!", size));
         }
-        this.board = new Cell[size][];
+        this.board = new Cell[size][size];
         for (int rowIndex = 0; rowIndex < size; rowIndex++) {
-            this.board[rowIndex] = new Cell[size];
             for (int columnIndex = 0; columnIndex < size; columnIndex++) {
                 this.board[rowIndex][columnIndex] = Cell.dead(rowIndex, columnIndex);
             }

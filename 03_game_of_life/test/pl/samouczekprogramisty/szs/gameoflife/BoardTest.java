@@ -13,8 +13,12 @@ public class BoardTest {
 
     @Test
     public void shouldBeAbleToPrintSmallBoard() {
-        String expected = "+-+" + System.lineSeparator() + "| |" + System.lineSeparator() + "+-+" ;
-        assertEquals(expected, new Board(1).toString());
+        String expected = "+---+" + System.lineSeparator() +
+                          "|   |" + System.lineSeparator() +
+                          "|   |" + System.lineSeparator() +
+                          "|   |" + System.lineSeparator() +
+                          "+---+" ;
+        assertEquals(expected, new Board(3).toString());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -29,10 +33,12 @@ public class BoardTest {
 
     @Test
     public void shouldBeAbleToCreateBoardWithCells() {
-        String boardVisualisation = "+-+" + System.lineSeparator() +
-                                    "|o|" + System.lineSeparator() +
-                                    "+-+";
-        Board board = new Board(1, Cell.live(0, 0));
+        String boardVisualisation = "+---+" + System.lineSeparator() +
+                                    "|   |" + System.lineSeparator() +
+                                    "|   |" + System.lineSeparator() +
+                                    "|o  |" + System.lineSeparator() +
+                                    "+---+";
+        Board board = new Board(3, Cell.live(0, 0));
         assertEquals(boardVisualisation, board.toString());
     }
 
@@ -47,7 +53,7 @@ public class BoardTest {
                                     "|       |" + System.lineSeparator() +
                                     "|       |" + System.lineSeparator() +
                                     "+-------+";
-        Board board = new Board(7, Cell.live(0, 4), Cell.live(1, 4), Cell.live(2, 4));
+        Board board = new Board(7, Cell.live(0, 2), Cell.live(1, 2), Cell.live(2, 2));
         assertEquals(boardVisualisation, board.toString());
     }
 
