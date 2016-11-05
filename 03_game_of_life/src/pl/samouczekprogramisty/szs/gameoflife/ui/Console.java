@@ -25,6 +25,7 @@ public class Console implements BoardRenerer {
     @Override
     public void renderBoard() {
         outputStream.print(boardToString());
+        outputStream.print(System.lineSeparator());
     }
 
     public String boardToString() {
@@ -60,5 +61,18 @@ public class Console implements BoardRenerer {
         }
         line.append(BOARD_CORNER);
         return line.toString();
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        long oneSecond = 1000;
+        int numberOfSteps = 10;
+
+        Board board = new Board(5, Cell.live(0, 2), Cell.live(1, 2), Cell.live(2, 2), Cell.live(2, 3), Cell.live(1, 4));
+        for (int stepNumber = 0; stepNumber < numberOfSteps; stepNumber++) {
+            Console console = new Console(board);
+            console.renderBoard();
+            board = board.nextGeneration();
+            Thread.sleep(oneSecond);
+        }
     }
 }
