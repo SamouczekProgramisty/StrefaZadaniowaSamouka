@@ -46,7 +46,7 @@ public class Board {
         this.board = new Cell[size][size];
         for (int rowIndex = 0; rowIndex < size; rowIndex++) {
             for (int columnIndex = 0; columnIndex < size; columnIndex++) {
-                this.board[rowIndex][columnIndex] = Cell.dead(rowIndex, columnIndex);
+                this.board[rowIndex][columnIndex] = Cell.dead(columnIndex, rowIndex);
             }
         }
         for(Cell cell : cells) {

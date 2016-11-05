@@ -91,19 +91,47 @@ public class BoardTest {
 
     @Test
     public void shouldBeAbleToProvideNextGenerationWithPeriod() {
-        String boardVisualisation = "+---+" + System.lineSeparator() +
-                                    "| o |" + System.lineSeparator() +
-                                    "| o |" + System.lineSeparator() +
-                                    "| o |" + System.lineSeparator() +
-                                    "+---+";
-        Board board = new Board(3, Cell.live(1, 0), Cell.live(1, 1), Cell.live(1, 2));
+        String boardVisualisation = "+----+" + System.lineSeparator() +
+                                    "|    |" + System.lineSeparator() +
+                                    "| o  |" + System.lineSeparator() +
+                                    "| o  |" + System.lineSeparator() +
+                                    "| o  |" + System.lineSeparator() +
+                                    "+----+";
+        Board board = new Board(4, Cell.live(1, 0), Cell.live(1, 1), Cell.live(1, 2));
+
         assertEquals(boardVisualisation, board.toString());
-        String expected = "+---+" + System.lineSeparator() +
-                          "|   |" + System.lineSeparator() +
-                          "|ooo|" + System.lineSeparator() +
-                          "|   |" + System.lineSeparator() +
-                          "+---+";
+        String expected = "+----+" + System.lineSeparator() +
+                          "|    |" + System.lineSeparator() +
+                          "|    |" + System.lineSeparator() +
+                          "|ooo |" + System.lineSeparator() +
+                          "|    |" + System.lineSeparator() +
+                          "+----+";
         Board boardNextGeneration = board.nextGeneration();
         assertEquals(expected, boardNextGeneration.toString());
+    }
+
+    @Test
+    public void shouldBeAbleToAnimateGlider() {
+        String boardVisualistaion = "+-----+" + System.lineSeparator() +
+                                    "| o   |" + System.lineSeparator() +
+                                    "|  o  |" + System.lineSeparator() +
+                                    "|ooo  |" + System.lineSeparator() +
+                                    "|     |" + System.lineSeparator() +
+                                    "|     |" + System.lineSeparator() +
+                                    "+-----+";
+        Board board = new Board(5, Cell.live(0, 2), Cell.live(1, 2), Cell.live(2, 2), Cell.live(2, 3), Cell.live(1, 4));
+        assertEquals(boardVisualistaion, board.toString());
+
+        // https://en.wikipedia.org/wiki/Glider_(Conway%27s_Life)
+        // glider's period is 4
+        String expected = "+-----+" + System.lineSeparator() +
+                          "|     |" + System.lineSeparator() +
+                          "|  o  |" + System.lineSeparator() +
+                          "|   o |" + System.lineSeparator() +
+                          "| ooo |" + System.lineSeparator() +
+                          "|     |" + System.lineSeparator() +
+                          "+-----+";
+        board = board.nextGeneration().nextGeneration().nextGeneration().nextGeneration();
+        assertEquals(expected, board.toString());
     }
 }
