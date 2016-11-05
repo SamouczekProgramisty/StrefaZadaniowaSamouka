@@ -40,4 +40,17 @@ public class CellTest {
 
         assertEquals(expected, neighbours);
     }
+
+    @Test
+    public void cellsWithTheSameStateAndCordsShouldBeEqual() {
+        Cell cell1 = Cell.dead(0, 0);
+        Cell cell2 = Cell.dead(0, 0);
+        assertEquals(cell1, cell2);
+        assertEquals(cell1.hashCode(), cell2.hashCode());
+    }
+
+    @Test
+    public void shouldBeAbleToConvertCellToString() {
+        assertEquals("Cell{DEAD, (1, 0)}", Cell.dead(1, 0).toString());
+    }
 }
