@@ -67,6 +67,8 @@ public class Board {
         return BordVisualisation.toString(this);
     }
 
-    public void nextGeneration() {
+    public Board nextGeneration() {
+        return null;
     }
+
 }

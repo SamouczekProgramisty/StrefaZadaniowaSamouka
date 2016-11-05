@@ -66,7 +66,20 @@ public class BoardTest {
                                 "|ooo|" + System.lineSeparator() +
                                 "|   |" + System.lineSeparator() +
                                 "+---+";
+        Board boardNextGeneration = board.nextGeneration();
+        assertEquals(nextGeneration, boardNextGeneration.toString());
+    }
+
+    @Test
+    public void shouldBeImmutable() {
+        String boardVisualisation = "+---+" + System.lineSeparator() +
+                "| o |" + System.lineSeparator() +
+                "| o |" + System.lineSeparator() +
+                "| o |" + System.lineSeparator() +
+                "+---+";
+        Board board = new Board(3, Cell.live(1, 0), Cell.live(1, 1), Cell.live(1, 2));
+        assertEquals(boardVisualisation, board.toString());
         board.nextGeneration();
-        assertEquals(nextGeneration, board.toString());
+        assertEquals(boardVisualisation, board.toString());
     }
 }
