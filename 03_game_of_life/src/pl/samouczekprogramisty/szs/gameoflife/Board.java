@@ -5,41 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Board {
-    private final Cell[][] board;
 
-    private static class BordVisualisation {
-        private static final String BOARD_VERTICAL_BORDER = "|";
-        private static final String BOARD_HORIZONTAL_BORDER = "-";
-        private static final String BOARD_CORNER = "+";
-
-        public static String toString(Board b) {
-            Cell[][] board = b.board;
-            StringBuilder builder = new StringBuilder();
-            builder.append(createTopBottomLine(board.length));
-            builder.append(System.lineSeparator());
-            for(int rowIndex = 1; rowIndex <= board.length; rowIndex++) {
-                Cell[] row = board[board.length - rowIndex];
-                builder.append(BOARD_VERTICAL_BORDER);
-                for(Cell cell : row) {
-                    builder.append(cell.toSimpleString());
-                }
-                builder.append(BOARD_VERTICAL_BORDER);
-                builder.append(System.lineSeparator());
-            }
-            builder.append(createTopBottomLine(board.length));
-            return builder.toString();
-        }
-
-        private static String createTopBottomLine(int size) {
-            StringBuilder line = new StringBuilder();
-            line.append(BOARD_CORNER);
-            for(int i = 0; i < size; i++) {
-                line.append(BOARD_HORIZONTAL_BORDER);
-            }
-            line.append(BOARD_CORNER);
-            return line.toString();
-        }
-    }
+    // TODO it's just a step to have proper visualisation code!
+    // FIXME This property musn't be public!
+    public final Cell[][] board;
+    private final int size;
 
     private static class Coordinates {
         private final int rowIndex;
@@ -56,6 +26,7 @@ public class Board {
             throw new IllegalArgumentException(String.format("Size %d is illegal!", size));
         }
         this.board = new Cell[size][size];
+        this.size = size;
 
         for (Coordinates coordinates : iterateOverCells()) {
             setCell(Cell.dead(coordinates.columnIndex, coordinates.rowIndex));
@@ -68,14 +39,10 @@ public class Board {
 
     private Board(Cell[][] state) {
         board = new Cell[state.length][];
+        size = state.length;
         for (int index = 0; index < state.length; index++) {
             board[index] = Arrays.copyOf(state[index], state[index].length);
         }
-    }
-
-    @Override
-    public String toString() {
-        return BordVisualisation.toString(this);
     }
 
     public Board nextGeneration() {
@@ -87,6 +54,10 @@ public class Board {
         }
 
         return nextGeneration;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     public Cell getCell(int columnIndex, int rowIndex) {
