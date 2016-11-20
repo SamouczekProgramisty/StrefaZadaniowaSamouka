@@ -50,4 +50,15 @@ public class GradeBookTest {
         GradeBook gradeBook = new GradeBook();
         gradeBook.addNote(SUBJECT, 4.5);
     }
+
+    @Test
+    public void shouldComputeGlobalAverageNote()  {
+        gradeBookWithSubject.addSubject("fizyka");
+        gradeBookWithSubject.addNote(SUBJECT, 3);
+        gradeBookWithSubject.addNote(SUBJECT, 5);
+        gradeBookWithSubject.addNote("fizyka", 2);
+        gradeBookWithSubject.addNote("fizyka", 4);
+
+        assertEquals(3.5, gradeBookWithSubject.getAverageNote(), 0.001);
+    }
 }
