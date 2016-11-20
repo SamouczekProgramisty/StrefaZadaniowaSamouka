@@ -19,4 +19,12 @@ public class Subject {
     public void addNote(double note) {
         notes.add(note);
     }
+
+    public double getAverage() {
+        double noteSum = 0;
+        for(double note : notes) {
+            noteSum += note;
+        }
+        return noteSum / notes.size();
+    }
 }
