@@ -27,4 +27,10 @@ public class GradeBookTest {
         gradeBook.addSubject(SUBJECT);
         assertNotNull(gradeBook.getSubject(SUBJECT));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldntAllowToGetNonExistingSubject() {
+        GradeBook gradeBook = new GradeBook();
+        gradeBook.getSubject(SUBJECT);
+    }
 }
