@@ -13,4 +13,8 @@ public class GradeBook {
         }
         subjects.put(subject, new Subject(subject));
     }
+
+    public Subject getSubject(String subject) {
+        return subjects.get(subject);
+    }
 }
