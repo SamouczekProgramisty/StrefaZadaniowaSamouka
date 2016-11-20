@@ -22,6 +22,9 @@ public class GradeBook {
     }
 
     public void addNote(String subject, double note) {
+        if (!subjects.containsKey(subject)) {
+            throw new IllegalArgumentException(String.format("Przedmiot %s nie istnieje!", subject));
+        }
         subjects.get(subject).addNote(note);
     }
 }
