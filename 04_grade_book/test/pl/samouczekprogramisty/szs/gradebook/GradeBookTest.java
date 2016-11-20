@@ -3,6 +3,7 @@ package pl.samouczekprogramisty.szs.gradebook;
 import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 public class GradeBookTest {
 
@@ -26,6 +27,14 @@ public class GradeBookTest {
         GradeBook gradeBook = new GradeBook();
         gradeBook.addSubject(SUBJECT);
         assertNotNull(gradeBook.getSubject(SUBJECT));
+    }
+
+    @Test
+    public void shouldGetValidSubjectFromGradeBook() {
+        GradeBook gradeBook = new GradeBook();
+        gradeBook.addSubject(SUBJECT);
+        Subject subject = gradeBook.getSubject(SUBJECT);
+        assertEquals(SUBJECT, subject.getName());
     }
 
     @Test(expected = IllegalArgumentException.class)
