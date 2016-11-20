@@ -35,4 +35,11 @@ public class GradeBookTest {
         GradeBook gradeBook = new GradeBook();
         gradeBook.getSubject(SUBJECT);
     }
+
+    @Test
+    public void shouldBeAbleToAddNote() {
+        GradeBook gradeBook = new GradeBook();
+        gradeBook.addSubject(SUBJECT);
+        gradeBook.addNote(SUBJECT, 4.5);
+    }
 }
