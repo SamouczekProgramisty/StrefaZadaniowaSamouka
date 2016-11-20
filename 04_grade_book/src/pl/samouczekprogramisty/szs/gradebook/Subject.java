@@ -7,4 +7,8 @@ public class Subject {
     public Subject(String subject) {
         this.subject = subject;
     }
+
+    public String getName() {
+        return subject;
+    }
 }
