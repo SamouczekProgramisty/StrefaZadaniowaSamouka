@@ -23,13 +23,6 @@ public class GradeBookTest {
     }
 
     @Test
-    public void shouldBeAbleToGetSubjectFromGradeBook() {
-        GradeBook gradeBook = new GradeBook();
-        gradeBook.addSubject(SUBJECT);
-        assertNotNull(gradeBook.getSubject(SUBJECT));
-    }
-
-    @Test
     public void shouldGetValidSubjectFromGradeBook() {
         GradeBook gradeBook = new GradeBook();
         gradeBook.addSubject(SUBJECT);

@@ -2,13 +2,13 @@ package pl.samouczekprogramisty.szs.gradebook;
 
 
 public class Subject {
-    private final String subject;
+    private final String name;
 
-    public Subject(String subject) {
-        this.subject = subject;
+    public Subject(String name) {
+        this.name = name;
     }
 
     public String getName() {
-        return subject;
+        return name;
     }
 }
