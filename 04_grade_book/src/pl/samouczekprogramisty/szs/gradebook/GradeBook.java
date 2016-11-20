@@ -25,4 +25,12 @@ public class GradeBook {
         Subject subject = getSubject(subjectName);
         subject.addNote(note);
     }
+
+    public double getAverageNote() {
+        double noteSum = 0;
+        for(Subject subject : subjects.values()) {
+            noteSum += subject.getAverage();
+        }
+        return noteSum / subjects.size();
+    }
 }
