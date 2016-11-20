@@ -10,4 +10,10 @@ public class GradeBookTest {
         GradeBook gradeBook = new GradeBook();
         assertNotNull(gradeBook);
     }
+
+    @Test
+    public void shouldBeAbleToAddNewSubject() {
+        GradeBook gradeBook = new GradeBook();
+        gradeBook.addSubject(new Subject("matematyka"));
+    }
 }
