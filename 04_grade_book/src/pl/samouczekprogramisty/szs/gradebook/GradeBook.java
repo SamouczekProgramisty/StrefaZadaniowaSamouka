@@ -18,6 +18,6 @@ public class GradeBook {
         if (subjects.containsKey(subject)) {
             return subjects.get(subject);
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(String.format("Przedmiot %s nie istnieje!", subject));
     }
 }
