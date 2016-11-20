@@ -9,7 +9,7 @@ public class GradeBook {
 
     public void addSubject(String subject) {
         if (subjects.containsKey(subject)) {
-            throw new IllegalStateException("Przedmiot " + subject + " juz istnieje!");
+            throw new IllegalStateException(String.format("Przedmiot  %s juz istnieje!", subject));
         }
         subjects.put(subject, new Subject(subject));
     }
