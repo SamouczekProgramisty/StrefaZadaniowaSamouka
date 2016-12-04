@@ -1,11 +1,10 @@
 package pl.samouczekprogramisty.szs.aoc2016.day03;
 
 import org.junit.Test;
+import pl.samouczekprogramisty.szs.aoc2016.InputFileReader;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,17 +16,14 @@ public class PuzzleTest {
         int valid = 0;
         int invalid = 0;
 
-        try(BufferedReader input = new BufferedReader(new FileReader(getInputFile()))) {
-            String line;
-            while ((line = input.readLine()) != null) {
-                int[] sides = parse(line);
-                try {
-                    new Triangle(sides[0], sides[1], sides[2]);
-                    valid++;
-                }
-                catch (IllegalArgumentException e) {
-                    invalid++;
-                }
+        for (String line : InputFileReader.readFileAsLines("day03_input.txt")) {
+            int[] sides = parse(line);
+            try {
+                new Triangle(sides[0], sides[1], sides[2]);
+                valid++;
+            }
+            catch (IllegalArgumentException e) {
+                invalid++;
             }
         }
 
@@ -35,15 +31,6 @@ public class PuzzleTest {
         System.out.println(invalid);
     }
 
-    private File getInputFile() {
-        return new File(
-                "src" + File.separator +
-                "main" + File.separator +
-                "test" + File.separator +
-                "resources" + File.separator +
-                "day03_input.txt"
-        );
-    }
 
     private int[] parse(String line) {
         Matcher matcher = pattern.matcher(line);
@@ -61,20 +48,18 @@ public class PuzzleTest {
         int valid = 0;
         int invalid = 0;
 
-        try(BufferedReader input = new BufferedReader(new FileReader(getInputFile()))) {
-            String firstLine;
-            while ((firstLine = input.readLine()) != null) {
-                int[] sides1 = parse(firstLine);
-                int[] sides2 = parse(input.readLine());
-                int[] sides3 = parse(input.readLine());
-                for (int i = 0; i < 3; i++) {
-                    try {
-                        new Triangle(sides1[i], sides2[i], sides3[i]);
-                        valid++;
-                    }
-                    catch (IllegalArgumentException e) {
-                        invalid++;
-                    }
+        List<String> lines = InputFileReader.readFileAsLines("day03_input.txt");
+        for (int lineIndex = 0; lineIndex < lines.size(); lineIndex += 3) {
+            int[] sides1 = parse(lines.get(lineIndex));
+            int[] sides2 = parse(lines.get(lineIndex + 1));
+            int[] sides3 = parse(lines.get(lineIndex + 2));
+            for (int sideIndex = 0; sideIndex < 3; sideIndex++) {
+                try {
+                    new Triangle(sides1[sideIndex], sides2[sideIndex], sides3[sideIndex]);
+                    valid++;
+                }
+                catch (IllegalArgumentException e) {
+                    invalid++;
                 }
             }
         }
