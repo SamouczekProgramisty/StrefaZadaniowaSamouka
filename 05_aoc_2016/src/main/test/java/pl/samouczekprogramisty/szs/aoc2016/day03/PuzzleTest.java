@@ -1,5 +1,6 @@
 package pl.samouczekprogramisty.szs.aoc2016.day03;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import pl.samouczekprogramisty.szs.aoc2016.InputFileReader;
 
@@ -8,6 +9,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+@Ignore
 public class PuzzleTest {
     private static final Pattern pattern = Pattern.compile("(\\d+) +(\\d+) +(\\d+)");
 
