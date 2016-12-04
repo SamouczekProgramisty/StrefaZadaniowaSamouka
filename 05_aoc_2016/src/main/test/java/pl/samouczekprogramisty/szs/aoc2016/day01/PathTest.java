@@ -2,10 +2,6 @@ package pl.samouczekprogramisty.szs.aoc2016.day01;
 
 import org.junit.Assert;
 import org.junit.Test;
-import pl.samouczekprogramisty.szs.aoc2016.day01.Coordinates;
-import pl.samouczekprogramisty.szs.aoc2016.day01.Path;
-
-import java.util.regex.Pattern;
 
 import static org.junit.Assert.*;
 

@@ -1,8 +1,6 @@
 package pl.samouczekprogramisty.szs.aoc2016.day01;
 
 import org.junit.Test;
-import pl.samouczekprogramisty.szs.aoc2016.day01.Coordinates;
-import pl.samouczekprogramisty.szs.aoc2016.day01.Orientation;
 
 import static org.junit.Assert.*;
 

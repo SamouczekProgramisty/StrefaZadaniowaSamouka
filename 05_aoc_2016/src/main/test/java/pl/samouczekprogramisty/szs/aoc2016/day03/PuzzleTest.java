@@ -17,7 +17,7 @@ public class PuzzleTest {
         int valid = 0;
         int invalid = 0;
 
-        try(BufferedReader input = new BufferedReader(new FileReader(new File("test" + File.separator + "input.txt")))) {
+        try(BufferedReader input = new BufferedReader(new FileReader(getInputFile()))) {
             String line;
             while ((line = input.readLine()) != null) {
                 int[] sides = parse(line);
@@ -33,6 +33,16 @@ public class PuzzleTest {
 
         System.out.println(valid);
         System.out.println(invalid);
+    }
+
+    private File getInputFile() {
+        return new File(
+                "src" + File.separator +
+                "main" + File.separator +
+                "test" + File.separator +
+                "resources" + File.separator +
+                "day03_input.txt"
+        );
     }
 
     private int[] parse(String line) {
@@ -51,7 +61,7 @@ public class PuzzleTest {
         int valid = 0;
         int invalid = 0;
 
-        try(BufferedReader input = new BufferedReader(new FileReader(new File("test" + File.separator + "input.txt")))) {
+        try(BufferedReader input = new BufferedReader(new FileReader(getInputFile()))) {
             String firstLine;
             while ((firstLine = input.readLine()) != null) {
                 int[] sides1 = parse(firstLine);
