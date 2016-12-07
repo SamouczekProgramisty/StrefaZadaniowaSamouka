@@ -5,6 +5,8 @@ import pl.samouczekprogramisty.szs.aoc2016.InputFileReader;
 
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 public class PuzzleTest {
     @Test
     public void shouldBeAbleToSolvePuzzle() {
@@ -17,7 +19,7 @@ public class PuzzleTest {
                 joinedLines.append(System.lineSeparator());
             }
         }
-        System.out.println(new StandardKeypad().parseCode(joinedLines.toString()));
-        System.out.println(new FancyKeypad().parseCode(joinedLines.toString()));
+        assertEquals("45973", new StandardKeypad().parseCode(joinedLines.toString()));
+        assertEquals("27CA4", new FancyKeypad().parseCode(joinedLines.toString()));
     }
 }

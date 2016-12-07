@@ -63,10 +63,12 @@ public class DoorPasswordCracker {
                 try {
                     int index = Integer.parseInt(Character.toString(indexChar));
                     boolean indexIsntTooBig = index < PASSWORD_LENGTH;
-                    boolean indexWasntAlreadyFilled = enhancedPasswordBuilder[index] == NULL_CHARACTER;
-                    if (indexIsntTooBig && indexWasntAlreadyFilled) {
-                        enhancedPasswordBuilder[index] = roomHash.charAt(passwordCharacterPosition);
-                        foundCharacters++;
+                    if (indexIsntTooBig) {
+                        boolean indexWasntAlreadyFilled = enhancedPasswordBuilder[index] == NULL_CHARACTER;
+                        if (indexWasntAlreadyFilled) {
+                            enhancedPasswordBuilder[index] = roomHash.charAt(passwordCharacterPosition);
+                            foundCharacters++;
+                        }
                     }
                 }
                 catch (NumberFormatException e) {
