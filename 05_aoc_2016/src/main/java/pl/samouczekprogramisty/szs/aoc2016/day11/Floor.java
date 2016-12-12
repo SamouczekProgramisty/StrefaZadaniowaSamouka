@@ -3,6 +3,7 @@ package pl.samouczekprogramisty.szs.aoc2016.day11;
 
 import pl.samouczekprogramisty.szs.aoc2016.day11.solution.Move;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,6 +16,7 @@ import java.util.Set;
 public class Floor {
     private final Map<String, Generator> generators;
     private final Map<String, Microchip> microchips;
+    private final String strUnmachedDevices;
 
     public Floor(Set<Generator> generators, Set<Microchip> microchips) {
         Map<String, Microchip> tempMicrochips = new HashMap<>();
@@ -31,6 +33,8 @@ public class Floor {
         this.microchips = Collections.unmodifiableMap(tempMicrochips);
 
         validateState();
+
+        strUnmachedDevices = initializeStrUnmachedDevices();
     }
 
     public Floor(ElectronicDevice ... devices) {
@@ -52,6 +56,8 @@ public class Floor {
         microchips = Collections.unmodifiableMap(tempMicrochips);
 
         validateState();
+
+        strUnmachedDevices = initializeStrUnmachedDevices();
     }
 
     private void validateState() {
@@ -63,6 +69,32 @@ public class Floor {
         if (!generatorTypes.isEmpty() && !microchipTypes.isEmpty()) {
             throw new IllegalArgumentException("Microchips " + microchipTypes + " doesn't have generators within " + generatorTypes + "!");
         }
+    }
+
+    private String initializeStrUnmachedDevices() {
+        List<String> unmachedDevices = new ArrayList<>();
+
+        for (String microchipType : microchips.keySet()) {
+            if (generators.containsKey(microchipType)) {
+                unmachedDevices.add("[P]");
+            }
+            else {
+                unmachedDevices.add("M[" + microchipType + "]");
+            }
+        }
+
+        for (String microchipType : generators.keySet()) {
+            if (!microchips.containsKey(microchipType)) {
+                unmachedDevices.add("G[" + microchipType + "]");
+            }
+        }
+        Collections.sort(unmachedDevices);
+
+        StringBuilder returnValue = new StringBuilder();
+        for (String device : unmachedDevices) {
+            returnValue.append(device);
+        }
+        return returnValue.toString();
     }
 
     public boolean isEmpty() {
@@ -209,6 +241,10 @@ public class Floor {
             sb.append(" ");
         }
         return sb.toString();
+    }
+
+    public String toStringUnmachedDevices() {
+        return strUnmachedDevices;
     }
 
     @Override

@@ -5,17 +5,29 @@ import pl.samouczekprogramisty.szs.aoc2016.day11.solution.Move;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Building {
     private final List<Floor> floors;
+    private final Set<String> floorUnmachedDevies;
     private final Integer elevatorAtFloor;
 
     public Building(Integer whereIsElevator, List<Floor> floors) {
         this.floors = Collections.unmodifiableList(new ArrayList<>(floors));
+        floorUnmachedDevies = initializeFloorRepresentation();
         elevatorAtFloor = whereIsElevator;
+    }
+
+    private Set<String> initializeFloorRepresentation() {
+        Set<String> unmachedDevicesOnFloors = new HashSet<>();
+        for (Floor floor : floors) {
+            unmachedDevicesOnFloors.add(floor.toStringUnmachedDevices());
+        }
+        return unmachedDevicesOnFloors;
     }
 
     public boolean isSolved() {
@@ -88,7 +100,8 @@ public class Building {
             return false;
         }
         Building building = (Building) o;
-        return Objects.equals(floors, building.floors) &&
+
+        return Objects.equals(floorUnmachedDevies, building.floorUnmachedDevies) &&
                 Objects.equals(elevatorAtFloor, building.elevatorAtFloor);
     }
 

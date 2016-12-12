@@ -43,6 +43,24 @@ public class FloorTest {
     }
 
     @Test
+    public void shouldSayThatTherAreOnlyPairedDevices() {
+        Floor floor = new Floor(MA, GA);
+        assertEquals("[P]", floor.toStringUnmachedDevices());
+    }
+
+    @Test
+    public void shouldNoticeUnpairedGenerator() {
+        Floor floor = new Floor(MA, GA, GC);
+        assertEquals("G[C][P]", floor.toStringUnmachedDevices());
+    }
+
+    @Test
+    public void shouldNotiveUnpairedMicrochips() {
+        Floor floor = new Floor(MA, MB);
+        assertEquals("M[A]M[B]", floor.toStringUnmachedDevices());
+    }
+
+    @Test
     public void shouldValidateThatFloorIsValid() {
         try {
             new Floor(MA, MB, GA);
