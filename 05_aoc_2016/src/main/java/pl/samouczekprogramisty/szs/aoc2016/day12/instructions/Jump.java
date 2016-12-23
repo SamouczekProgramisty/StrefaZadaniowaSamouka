@@ -4,12 +4,12 @@ import pl.samouczekprogramisty.szs.aoc2016.day12.DataHolder;
 
 
 public class Jump implements Instruction {
-    private static final Integer SHOULDNT_JUMP = 0;
+    protected static final Integer SHOULDNT_JUMP = 0;
 
-    private final DataHolder dataHolder;
-    private final Integer offset;
+    protected final DataHolder dataHolder;
+    protected final DataHolder offset;
 
-    public Jump(DataHolder dataHolder, Integer offset) {
+    public Jump(DataHolder dataHolder, DataHolder offset) {
         this.dataHolder = dataHolder;
         this.offset = offset;
     }
@@ -20,7 +20,7 @@ public class Jump implements Instruction {
             instructionStack.moveToNextCommand();
         }
         else {
-            instructionStack.jump(offset);
+            instructionStack.jump(offset.getValue());
         }
     }
 

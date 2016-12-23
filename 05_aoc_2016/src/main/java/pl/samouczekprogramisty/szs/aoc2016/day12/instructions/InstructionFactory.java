@@ -10,10 +10,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InstructionFactory {
-    private static final Pattern CPY_INSTRUCTION = Pattern.compile("cpy (-?\\d+|[a-z]) ([a-z])");
-    private static final Pattern INC_INSTRUCTION = Pattern.compile("inc ([a-z])");
-    private static final Pattern DEC_INSTRUCTION = Pattern.compile("dec ([a-z])");
-    private static final Pattern JNZ_INSTRUCTION = Pattern.compile("jnz (-?\\d+|[a-z]) (-?\\d+)");
+    public static final Pattern CPY_INSTRUCTION = Pattern.compile("cpy (-?\\d+|[a-z]) ([a-z])");
+    public static final Pattern INC_INSTRUCTION = Pattern.compile("inc ([a-z])");
+    public static final Pattern DEC_INSTRUCTION = Pattern.compile("dec ([a-z])");
+    public static final Pattern JNZ_INSTRUCTION = Pattern.compile("jnz (-?\\d+|[a-z]) (-?\\d+|[a-z])");
 
     private InstructionFactory() {
     }
@@ -37,19 +37,21 @@ public class InstructionFactory {
         }
         matcher = JNZ_INSTRUCTION.matcher(instruction);
         if (matcher.matches()) {
-            Integer offset = Integer.valueOf(matcher.group(2));
-            return new Jump(getDataHolder(registers, matcher.group(1)), offset);
+            return new Jump(
+                getDataHolder(registers, matcher.group(1)),
+                getDataHolder(registers, matcher.group(2))
+            );
         }
         throw new IllegalArgumentException("Couldn't parse [" + instruction + "]!");
     }
 
-    private static DataHolder getDataHolder(Registers registers, String group) {
+    public static DataHolder getDataHolder(Registers registers, String dataHolderName) {
         try {
-            Integer value = Integer.valueOf(group);
+            Integer value = Integer.valueOf(dataHolderName);
             return new StaticNumber(value);
         }
         catch (NumberFormatException e) {
-            return registers.getRegister(group);
+            return registers.getRegister(dataHolderName);
         }
     }
 }

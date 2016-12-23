@@ -8,8 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class AssembunnyEmulator {
-    private final InstructionStack instructionStack;
-    private final Registers registers;
+    protected final InstructionStack instructionStack;
+    protected final Registers registers;
 
     public AssembunnyEmulator(List<String> instructions) {
         this(instructions, new Registers());
@@ -17,15 +17,16 @@ public class AssembunnyEmulator {
 
     public AssembunnyEmulator(List<String> instructions, Registers registers) {
         this.registers = registers;
-        instructionStack = new InstructionStack(instantiateInstructions(instructions));
+        instructionStack = instantiateInstructions(instructions);
     }
 
-    private List<Instruction> instantiateInstructions(List<String> instructionsToParse) {
+    protected InstructionStack instantiateInstructions(List<String> instructionsToParse) {
         List<Instruction> instructions = new LinkedList<Instruction>();
         for (String instruction : instructionsToParse) {
             instructions.add(InstructionFactory.parse(registers, instruction));
         }
-        return instructions;
+
+        return new InstructionStack<>(instructions);
     }
 
     public void run() {
