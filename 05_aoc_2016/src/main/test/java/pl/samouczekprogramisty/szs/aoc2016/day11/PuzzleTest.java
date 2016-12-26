@@ -1,6 +1,7 @@
 package pl.samouczekprogramisty.szs.aoc2016.day11;
 
 
+import org.junit.Ignore;
 import org.junit.Test;
 import pl.samouczekprogramisty.szs.aoc2016.day11.solution.SolutionFinder;
 
@@ -40,6 +41,7 @@ public class PuzzleTest {
     }
 
     @Test
+    @Ignore
     public void shouldSolvePuzzleStep2() {
         Building building = new Building(
             0,

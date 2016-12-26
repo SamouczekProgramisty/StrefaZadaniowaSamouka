@@ -30,7 +30,7 @@ public class PuzzleTest {
                 break;
             }
         }
-        assertEquals("hgfedcba", searchedPermutation);
+        assertEquals("gahedfcb", searchedPermutation);
     }
 
     public List<String> permutations(String input) {
