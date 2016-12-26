@@ -17,5 +17,4 @@ public class InstructionStackToggle extends InstructionStack<ToggleableInstructi
         ToggleableInstruction newInstruction = instructions.get(toggledIndex).toggle();
         instructions.set(toggledIndex, newInstruction);
     }
-
 }

@@ -16,6 +16,7 @@ public class InstructionStack<T extends Instruction> {
         while (instructionPointer < instructions.size()) {
             T instruction = instructions.get(instructionPointer);
             instruction.execute(this);
+            cleanAfterCommandExecution();
         }
     }
 
@@ -25,5 +26,9 @@ public class InstructionStack<T extends Instruction> {
 
     public void moveToNextCommand() {
         instructionPointer++;
+    }
+
+    protected void cleanAfterCommandExecution() {
+        // just to extend in different implementations
     }
 }

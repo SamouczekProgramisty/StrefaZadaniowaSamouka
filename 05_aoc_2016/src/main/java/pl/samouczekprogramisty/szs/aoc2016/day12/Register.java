@@ -17,6 +17,10 @@ public class Register implements DataHolder {
         this.value = value;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void increment() {
         value++;
     }
