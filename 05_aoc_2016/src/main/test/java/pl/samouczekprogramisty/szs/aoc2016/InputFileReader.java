@@ -12,6 +12,20 @@ public class InputFileReader {
     private InputFileReader() {
     }
 
+    public static String readFile(String fileName) {
+        StringBuilder file = new StringBuilder();
+        List<String> lines = readFileAsLines(fileName);
+        for (int lineIndex = 0; lineIndex < lines.size(); lineIndex++) {
+            String line = lines.get(lineIndex);
+            file.append(line);
+            boolean isntLastLine = lineIndex != lines.size() - 1;
+            if (isntLastLine) {
+                file.append(System.lineSeparator());
+            }
+        }
+        return file.toString();
+    }
+
     public static List<String> readFileAsLines(String fileName) {
         List<String> lines = new ArrayList<>();
 
