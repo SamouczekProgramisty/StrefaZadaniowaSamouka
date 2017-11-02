@@ -1,0 +1,8 @@
+rootProject.name = 'StrefaZadaniowaSamouka'
+
+include '01_lottery_machine'
+include '02_christmas_tree'
+include '03_bubble_sort'
+include '03_game_of_life'
+include '04_grade_book'
+include '05_aoc_2016'
