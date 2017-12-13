@@ -4,34 +4,90 @@ import org.junit.Test;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static pl.samouczekprogramisty.szs.missing.MissingElementFinder.findMissing;
+import static pl.samouczekprogramisty.szs.missing.MissingElementFinder.memoryGreedyFindMissing;
+import static pl.samouczekprogramisty.szs.missing.MissingElementFinder.naiveFindMissing;
+import static pl.samouczekprogramisty.szs.missing.MissingElementFinder.optimalFindMissing;
 
 public class MissingElementFinderTest {
 
     @Test
-    public void shouldFindMissingElementForEmptyArray() {
-        assertThat(findMissing(), equalTo(0));
+    public void shouldFindMissingElementForEmptyArrayNaive() {
+        assertThat(naiveFindMissing(), equalTo(0));
     }
 
     @Test
-    public void shouldFindMissingElementForOneElementArray() {
-        assertThat(findMissing(0), equalTo(1));
-        assertThat(findMissing(1), equalTo(0));
+    public void shouldFindMissingElementForEmptyArrayMemmoryGreedy() {
+        assertThat(memoryGreedyFindMissing(), equalTo(0));
     }
 
     @Test
-    public void shouldFindMissingElementInSampleInput() {
-        assertThat(findMissing(0, 2, 1, 4), equalTo(3));
+    public void shouldFindMissingElementForEmptyArrayOptimal() {
+        assertThat(optimalFindMissing(), equalTo(0));
     }
 
     @Test
-    public void shouldFindMissingElementIfItsFirst() {
-        assertThat(findMissing(3, 2, 1, 4), equalTo(0));
+    public void shouldFindMissingElementForOneElementArrayNaive() {
+        assertThat(naiveFindMissing(0), equalTo(1));
+        assertThat(naiveFindMissing(1), equalTo(0));
+    }
+
+
+    @Test
+    public void shouldFindMissingElementForOneElementArrayMemmoryGreedy() {
+        assertThat(memoryGreedyFindMissing(0), equalTo(1));
+        assertThat(memoryGreedyFindMissing(1), equalTo(0));
+    }
+
+
+    @Test
+    public void shouldFindMissingElementForOneElementArrayOptimal() {
+        assertThat(optimalFindMissing(0), equalTo(1));
+        assertThat(optimalFindMissing(1), equalTo(0));
     }
 
     @Test
-    public void shouldFindMissingElementIfItsLast() {
-        assertThat(findMissing(0, 3, 2, 1, 4), equalTo(5));
+    public void shouldFindMissingElementInSampleInputNaive() {
+        assertThat(naiveFindMissing(0, 2, 1, 4), equalTo(3));
+    }
+
+    @Test
+    public void shouldFindMissingElementInSampleInputMemmoryGreedy() {
+        assertThat(memoryGreedyFindMissing(0, 2, 1, 4), equalTo(3));
+    }
+
+    @Test
+    public void shouldFindMissingElementInSampleInputOptimal() {
+        assertThat(optimalFindMissing(0, 2, 1, 4), equalTo(3));
+    }
+
+    @Test
+    public void shouldFindMissingElementIfItsFirstNaive() {
+        assertThat(naiveFindMissing(3, 2, 1, 4), equalTo(0));
+    }
+
+    @Test
+    public void shouldFindMissingElementIfItsFirstMemmoryGreedy() {
+        assertThat(memoryGreedyFindMissing(3, 2, 1, 4), equalTo(0));
+    }
+
+    @Test
+    public void shouldFindMissingElementIfItsFirstOptimal() {
+        assertThat(optimalFindMissing(3, 2, 1, 4), equalTo(0));
+    }
+
+    @Test
+    public void shouldFindMissingElementIfItsLastNaive() {
+        assertThat(naiveFindMissing(0, 3, 2, 1, 4), equalTo(5));
+    }
+
+    @Test
+    public void shouldFindMissingElementIfItsLastMemmoryGreedy() {
+        assertThat(memoryGreedyFindMissing(0, 3, 2, 1, 4), equalTo(5));
+    }
+
+    @Test
+    public void shouldFindMissingElementIfItsLastOptimal() {
+        assertThat(optimalFindMissing(0, 3, 2, 1, 4), equalTo(5));
     }
 
 }

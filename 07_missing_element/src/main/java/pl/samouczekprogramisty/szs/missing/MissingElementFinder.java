@@ -6,7 +6,7 @@ public class MissingElementFinder {
         return optimalFindMissing(array);
     }
 
-    private static int naiveFindMissing(int... array) {
+    protected static int naiveFindMissing(int... array) {
         int missing = 0;
         boolean elementFound;
         for (int elementToFind = 0; elementToFind <= array.length; elementToFind++) {
@@ -25,7 +25,7 @@ public class MissingElementFinder {
         return  missing;
     }
 
-    private static int memoryGreedyFindMissing(int... array) {
+    protected static int memoryGreedyFindMissing(int... array) {
         boolean[] foundElements = new boolean[array.length + 1];
 
         for (int element : array) {
@@ -40,7 +40,7 @@ public class MissingElementFinder {
         throw new IllegalStateException("At least one flag should be equal false!");
     }
 
-    private static int optimalFindMissing(int... array) {
+    protected static int optimalFindMissing(int... array) {
         int expectedSum = (array.length + 1) * array.length / 2;
         int actualSum = 0;
 
