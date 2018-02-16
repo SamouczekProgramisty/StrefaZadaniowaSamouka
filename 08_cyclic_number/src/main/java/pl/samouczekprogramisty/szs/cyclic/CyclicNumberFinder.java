@@ -1,6 +1,5 @@
 package pl.samouczekprogramisty.szs.cyclic;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public final class CyclicNumberFinder {
@@ -8,10 +7,10 @@ public final class CyclicNumberFinder {
     private CyclicNumberFinder() { }
 
     public static boolean isCyclic(String number) {
-        return isCyclicNumberPrime(number);
+        return isCyclicGeneration(number);
     }
 
-    static boolean isCyclicBruteForce(String number) {
+    static boolean isCyclicNaive(String number) {
         String[] permutations = new String[number.length()];
 
         for (int index = 0; index < permutations.length; index++) {
@@ -35,11 +34,23 @@ public final class CyclicNumberFinder {
         return true;
     }
 
-    static boolean isCyclicNumberPrime(String number) {
-        BigDecimal value = new BigDecimal(number);
-        BigDecimal generatingPrime = BigDecimal.valueOf(number.length() + 1);
-        BigDecimal oughtToBeNines = value.multiply(generatingPrime);
-        return oughtToBeNines.add(BigDecimal.ONE).toString().length() == number.length() + 1;
+    static boolean isCyclicGeneration(String number) {
+        int base = 10;
+        int generatingPrime = number.length() + 1;
+
+        StringBuilder representation = new StringBuilder();
+
+        int step = 0;
+        int reminder = 1;
+        do {
+            step++;
+            int currentValueToDivide = reminder * base;
+            int currentDigit = currentValueToDivide / generatingPrime;
+            reminder = currentValueToDivide % generatingPrime;
+            representation.append(currentDigit);
+        } while (reminder != 1 && step < generatingPrime);
+
+        return number.equals(representation.toString());
     }
 
 }
