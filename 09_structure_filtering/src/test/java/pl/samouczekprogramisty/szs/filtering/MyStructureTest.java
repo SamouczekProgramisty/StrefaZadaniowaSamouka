@@ -12,6 +12,7 @@ class MyStructureTest {
     private static final Node NODE1 = new Node("code1", "renderer1");
     private static final Node NODE2 = new Node("code2", "renderer2");
     private static final CompositeNode COMPOSITE_NODE3 = new CompositeNode("code3", "renderer3");
+    private static final Node NODE4 = new Node("code4", "renderer4");
 
     private MyStructure emptyStructure;
     private MyStructure filledStructure;
@@ -24,6 +25,8 @@ class MyStructureTest {
         filledStructure.addNode(NODE1);
         filledStructure.addNode(NODE2);
         filledStructure.addNode(COMPOSITE_NODE3);
+
+        COMPOSITE_NODE3.addNode(NODE4);
     }
 
     @Test
@@ -77,13 +80,18 @@ class MyStructureTest {
     }
 
     @Test
-    void souldFindCompositeNodeByCode() {
+    void shouldFindCompositeNodeByCode() {
         assertThat(filledStructure.findByCode("code3"), is(COMPOSITE_NODE3));
     }
 
     @Test
-    void souldFindCompositeNodeByReferer() {
+    void shouldFindCompositeNodeByReferer() {
         assertThat(filledStructure.findByRenderer("renderer3"), is(COMPOSITE_NODE3));
+    }
+
+    @Test
+    void shouldBeAbleToFindNestedNodeByCode() {
+        assertThat(filledStructure.findByCode("code4"), is(NODE4));
     }
 
 }

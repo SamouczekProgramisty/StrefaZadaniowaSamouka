@@ -18,6 +18,10 @@ public class CompositeNode extends Node implements ICompositeNode {
         return Collections.unmodifiableList(nodes);
     }
 
+    public void addNode(INode node) {
+        nodes.add(node);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
