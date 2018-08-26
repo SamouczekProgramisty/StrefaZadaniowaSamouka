@@ -23,6 +23,14 @@ public class CompositeNode extends Node implements ICompositeNode {
         nodes.add(node);
     }
 
+    /**
+     * Transforms a node to a stream taking into account nested nodes. Stream handles also multiple nested composite nodes.
+     * Returned stream expands nested composite nodes in a depth first manner.
+     *
+     * C1(N2 C3(N4 N5) N6) will return stream of (C1 N2 C3 N4 N5 N6)
+     *
+     * This method doesn't handle case when composite node is a member of itself: C1(C1(C1...)))
+     */
     @Override
     public Stream<INode> toStream() {
         return Stream.concat(
