@@ -1,10 +1,11 @@
 package pl.samouczekprogramisty.szs.filtering;
 
+import java.util.LinkedList;
 import java.util.List;
 
 
 public class MyStructure implements IMyStructure {
-    private List<INode> nodes;
+    private final List<INode> nodes = new LinkedList<>();
 
     @Override
     public INode findByCode(String code) {
@@ -18,6 +19,10 @@ public class MyStructure implements IMyStructure {
 
     @Override
     public int count() {
-        return 0;
+        return nodes.size();
+    }
+
+    public void addNode(Node node) {
+        nodes.add(node);
     }
 }

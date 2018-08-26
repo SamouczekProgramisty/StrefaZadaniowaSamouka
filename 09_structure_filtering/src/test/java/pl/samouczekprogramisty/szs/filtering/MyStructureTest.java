@@ -35,4 +35,10 @@ class MyStructureTest {
         assertThat(structure.count(), is(equalTo(0)));
     }
 
+    @Test
+    void shouldBeAbleToAddNodesToStructure() {
+        structure.addNode(new Node("code1", "renderer1"));
+        assertThat(structure.count(), is(1));
+    }
+
 }
