@@ -16,4 +16,5 @@ public class CompositeNode extends Node implements ICompositeNode {
     public List<INode> getNodes() {
         return Collections.unmodifiableList(nodes);
     }
+
 }

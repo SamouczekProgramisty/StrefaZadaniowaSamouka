@@ -11,6 +11,7 @@ class MyStructureTest {
 
     private static final Node NODE1 = new Node("code1", "renderer1");
     private static final Node NODE2 = new Node("code2", "renderer2");
+    private static final CompositeNode COMPOSITE_NODE3 = new CompositeNode("code3", "renderer3");
 
     private MyStructure emptyStructure;
     private MyStructure filledStructure;
@@ -22,6 +23,7 @@ class MyStructureTest {
         filledStructure = new MyStructure();
         filledStructure.addNode(NODE1);
         filledStructure.addNode(NODE2);
+        filledStructure.addNode(COMPOSITE_NODE3);
     }
 
     @Test
@@ -72,6 +74,16 @@ class MyStructureTest {
     @Test
     void shouldntAcceptNullAsRenderer() {
         assertThrows(IllegalArgumentException.class, () -> emptyStructure.findByRenderer(null));
+    }
+
+    @Test
+    void souldFindCompositeNodeByCode() {
+        assertThat(filledStructure.findByCode("code3"), is(sameInstance(COMPOSITE_NODE3)));
+    }
+
+    @Test
+    void souldFindCompositeNodeByReferer() {
+        assertThat(filledStructure.findByRenderer("renderer3"), is(sameInstance(COMPOSITE_NODE3)));
     }
 
 }
