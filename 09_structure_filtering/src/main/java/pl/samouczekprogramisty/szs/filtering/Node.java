@@ -1,5 +1,7 @@
 package pl.samouczekprogramisty.szs.filtering;
 
+import java.util.Objects;
+
 public class Node implements INode {
     private final String code;
     private final String renderer;
@@ -17,5 +19,23 @@ public class Node implements INode {
     @Override
     public String getRenderer() {
         return renderer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Node node = (Node) o;
+        return Objects.equals(code, node.code) &&
+                Objects.equals(renderer, node.renderer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, renderer);
     }
 }

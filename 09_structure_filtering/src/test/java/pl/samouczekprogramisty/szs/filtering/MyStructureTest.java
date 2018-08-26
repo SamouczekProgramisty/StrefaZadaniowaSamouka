@@ -58,12 +58,12 @@ class MyStructureTest {
 
     @Test
     void shouldReturnNodeFoundByCode() {
-        assertThat(filledStructure.findByCode("code2"), is(sameInstance(NODE2)));
+        assertThat(filledStructure.findByCode("code2"), is(NODE2));
     }
 
     @Test
     void shouldReturnNodeFoundByRenderer() {
-        assertThat(filledStructure.findByRenderer("renderer2"), is(sameInstance(NODE2)));
+        assertThat(filledStructure.findByRenderer("renderer2"), is(NODE2));
     }
 
     @Test
@@ -78,12 +78,12 @@ class MyStructureTest {
 
     @Test
     void souldFindCompositeNodeByCode() {
-        assertThat(filledStructure.findByCode("code3"), is(sameInstance(COMPOSITE_NODE3)));
+        assertThat(filledStructure.findByCode("code3"), is(COMPOSITE_NODE3));
     }
 
     @Test
     void souldFindCompositeNodeByReferer() {
-        assertThat(filledStructure.findByRenderer("renderer3"), is(sameInstance(COMPOSITE_NODE3)));
+        assertThat(filledStructure.findByRenderer("renderer3"), is(COMPOSITE_NODE3));
     }
 
 }
