@@ -53,4 +53,13 @@ class MyStructureTest {
         assertThat(structure.findByRenderer("renderer2"), is(nullValue()));
     }
 
+    @Test
+    void shouldReturnNodeFoundByCode() {
+        structure.addNode(new Node("code1", "renderer1"));
+        Node node = new Node("code2", "renderer2");
+        structure.addNode(node);
+        structure.addNode(new Node("code3", "renderer3"));
+        assertThat(structure.findByCode("code2"), is(sameInstance(node)));
+    }
+
 }

@@ -9,7 +9,10 @@ public class MyStructure implements IMyStructure {
 
     @Override
     public INode findByCode(String code) {
-        return null;
+        return nodes.stream()
+                .filter(n -> code.equals(n.getCode()))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
