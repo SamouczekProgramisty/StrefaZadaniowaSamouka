@@ -21,12 +21,12 @@ class MyStructureTest {
     }
 
     @Test
-    void shouldReturnNullWhenNotFoundByCode() {
+    void shouldReturnNullWhenNotFoundByCodeAndStructureIsEmpty() {
         assertThat(structure.findByCode("xxx"), is(nullValue()));
     }
 
     @Test
-    void shouldReturnNullWhenNotFoundByRenderer() {
+    void shouldReturnNullWhenNotFoundByRendererAndStructureIsEmpty() {
         assertThat(structure.findByRenderer("xxx"), is(nullValue()));
     }
 
@@ -39,6 +39,18 @@ class MyStructureTest {
     void shouldBeAbleToAddNodesToStructure() {
         structure.addNode(new Node("code1", "renderer1"));
         assertThat(structure.count(), is(1));
+    }
+
+    @Test
+    void shouldReturnNullWhenNotFoundByCode() {
+        structure.addNode(new Node("code1", "renderer1"));
+        assertThat(structure.findByCode("code2"), is(nullValue()));
+    }
+
+    @Test
+    void shouldReturnNullWhenNotFoundByRenderer() {
+        structure.addNode(new Node("code1", "renderer1"));
+        assertThat(structure.findByRenderer("renderer2"), is(nullValue()));
     }
 
 }
