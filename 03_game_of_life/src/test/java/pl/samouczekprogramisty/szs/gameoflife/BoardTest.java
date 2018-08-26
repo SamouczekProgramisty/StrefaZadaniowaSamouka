@@ -1,19 +1,18 @@
 package pl.samouczekprogramisty.szs.gameoflife;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pl.samouczekprogramisty.szs.gameoflife.ui.Console;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class BoardTest {
+class BoardTest {
     @Test
-    public void shouldBeAbleToCreateNewBoard() {
+    void shouldBeAbleToCreateNewBoard() {
         assertNotNull(new Board(10));
     }
 
     @Test
-    public void shouldBeAbleToPrintSmallBoard() {
+    void shouldBeAbleToPrintSmallBoard() {
         String expected = "+---+" + System.lineSeparator() +
                           "|   |" + System.lineSeparator() +
                           "|   |" + System.lineSeparator() +
@@ -23,18 +22,18 @@ public class BoardTest {
         assertEquals(expected, new Console(board).boardToString());
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void shouldntAllowToCreateIllegalBoard() {
-        new Board(0);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void shouldntAllowToCreateIllegalBoardWithNegativeSize() {
-        new Board(-10);
+    @Test
+    void shouldntAllowToCreateIllegalBoard() {
+        assertThrows(IllegalArgumentException.class, () -> new Board(0));
     }
 
     @Test
-    public void shouldBeAbleToCreateBoardWithCells() {
+    void shouldntAllowToCreateIllegalBoardWithNegativeSize() {
+        assertThrows(IllegalArgumentException.class, () -> new Board(-10));
+    }
+
+    @Test
+    void shouldBeAbleToCreateBoardWithCells() {
         String boardVisualisation = "+---+" + System.lineSeparator() +
                                     "|   |" + System.lineSeparator() +
                                     "|   |" + System.lineSeparator() +
@@ -45,7 +44,7 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldBeAbleToCreateBiggerBoard() {
+    void shouldBeAbleToCreateBiggerBoard() {
         String boardVisualisation = "+-------+" + System.lineSeparator() +
                                     "|       |" + System.lineSeparator() +
                                     "|       |" + System.lineSeparator() +
@@ -60,7 +59,7 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldBeAbleToCreateNextGeneration() {
+    void shouldBeAbleToCreateNextGeneration() {
         String boardVisualisation = "+---+" + System.lineSeparator() +
                                     "|   |" + System.lineSeparator() +
                                     "| o |" + System.lineSeparator() +
@@ -79,7 +78,7 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldBeImmutable() {
+    void shouldBeImmutable() {
         String boardVisualisation = "+---+" + System.lineSeparator() +
                                     "| o |" + System.lineSeparator() +
                                     "| o |" + System.lineSeparator() +
@@ -93,7 +92,7 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldBeAbleToProvideNextGenerationWithPeriod() {
+    void shouldBeAbleToProvideNextGenerationWithPeriod() {
         String boardVisualisation = "+----+" + System.lineSeparator() +
                                     "|    |" + System.lineSeparator() +
                                     "| o  |" + System.lineSeparator() +
@@ -114,7 +113,7 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldBeAbleToAnimateGlider() {
+    void shouldBeAbleToAnimateGlider() {
         String boardVisualisation = "+-----+" + System.lineSeparator() +
                                     "| o   |" + System.lineSeparator() +
                                     "|  o  |" + System.lineSeparator() +

@@ -1,9 +1,10 @@
 package pl.samouczekprogramisty.szs.missing;
 
-import org.junit.Test;
+import org.hamcrest.Matcher;
+import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
 import static pl.samouczekprogramisty.szs.missing.MissingElementFinder.memoryGreedyFindMissing;
 import static pl.samouczekprogramisty.szs.missing.MissingElementFinder.naiveFindMissing;
 import static pl.samouczekprogramisty.szs.missing.MissingElementFinder.optimalFindMissing;
@@ -31,13 +32,11 @@ public class MissingElementFinderTest {
         assertThat(naiveFindMissing(1), equalTo(0));
     }
 
-
     @Test
     public void shouldFindMissingElementForOneElementArrayMemmoryGreedy() {
         assertThat(memoryGreedyFindMissing(0), equalTo(1));
         assertThat(memoryGreedyFindMissing(1), equalTo(0));
     }
-
 
     @Test
     public void shouldFindMissingElementForOneElementArrayOptimal() {

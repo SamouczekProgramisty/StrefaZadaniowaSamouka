@@ -1,28 +1,29 @@
 package pl.samouczekprogramisty.szs.gameoflife;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
-public class CellTest {
+class CellTest {
     @Test
-    public void shouldBeAbleToFlipCellState() {
+    void shouldBeAbleToFlipCellState() {
         Cell cell = Cell.dead(0, 0);
         Cell flipped = cell.flip();
         assertEquals(Cell.CellState.LIVE, flipped.getState());
     }
 
     @Test
-    public void shouldBeImmutable() {
+    void shouldBeImmutable() {
         Cell cell = Cell.live(0, 0);
         assertNotSame(cell, cell.flip());
     }
 
     @Test
-    public void shouldBeAbleToReturnNeighbours() {
+    void shouldBeAbleToReturnNeighbours() {
         Cell cell00 = Cell.dead(0, 0);
         Cell cell01 = Cell.dead(0, 1);
         Cell cell02 = Cell.dead(0, 2);
@@ -42,7 +43,7 @@ public class CellTest {
     }
 
     @Test
-    public void cellsWithTheSameStateAndCordsShouldBeEqual() {
+    void cellsWithTheSameStateAndCordsShouldBeEqual() {
         Cell cell1 = Cell.dead(0, 0);
         Cell cell2 = Cell.dead(0, 0);
         assertEquals(cell1, cell2);
@@ -50,12 +51,12 @@ public class CellTest {
     }
 
     @Test
-    public void shouldBeAbleToConvertCellToString() {
+    void shouldBeAbleToConvertCellToString() {
         assertEquals("Cell{DEAD, (1, 0)}", Cell.dead(1, 0).toString());
     }
 
     @Test
-    public void shouldBeAbleToReturnNeighboursOfCellOnTheEdge() {
+    void shouldBeAbleToReturnNeighboursOfCellOnTheEdge() {
         Cell cell00 = Cell.dead(0, 0);
         Cell cell01 = Cell.dead(0, 1);
         Cell cell02 = Cell.dead(0, 2);

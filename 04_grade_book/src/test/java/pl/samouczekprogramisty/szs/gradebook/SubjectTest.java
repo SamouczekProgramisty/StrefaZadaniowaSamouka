@@ -1,19 +1,19 @@
 package pl.samouczekprogramisty.szs.gradebook;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class SubjectTest {
+class SubjectTest {
     @Test
-    public void shoudBeAbleToCreateSubject() {
+    void shoudBeAbleToCreateSubject() {
         Subject subject = new Subject("matematyka");
         assertNotNull(subject);
     }
 
     @Test
-    public void shouldBeAbleToComputeAverageNote() {
+    void shouldBeAbleToComputeAverageNote() {
         Subject subject = new Subject("matematyka");
         subject.addNote(4);
         subject.addNote(5);

@@ -70,7 +70,7 @@ public class FloatingPoint {
 
     private FloatingPoint(BigDecimal realValue, double ieee754Value) {
         this(
-                Format.SINGLE_PRECISION,
+                Format.DOUBLE_PRECISION,
                 realValue,
                 new BigDecimal(ieee754Value),
                 String.format(

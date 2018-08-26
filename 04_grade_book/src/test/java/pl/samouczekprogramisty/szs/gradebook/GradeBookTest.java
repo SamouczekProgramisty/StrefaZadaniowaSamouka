@@ -1,60 +1,59 @@
 package pl.samouczekprogramisty.szs.gradebook;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class GradeBookTest {
+class GradeBookTest {
 
     private static final String SUBJECT = "matematyka";
     private static final String OTHER_SUBJECT = "fizyka";
 
     private GradeBook gradeBookWithSubject;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         gradeBookWithSubject = new GradeBook();
         gradeBookWithSubject.addSubject(SUBJECT);
     }
 
     @Test
-    public void shouldBeAbleToCreateGradeBook() {
+    void shouldBeAbleToCreateGradeBook() {
         GradeBook gradeBook = new GradeBook();
         assertNotNull(gradeBook);
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void shouldntAllowToAddSubjectThatAlreadyExists() {
-        gradeBookWithSubject.addSubject(SUBJECT);
+    @Test
+    void shouldntAllowToAddSubjectThatAlreadyExists() {
+        assertThrows(IllegalArgumentException.class, () -> gradeBookWithSubject.addSubject(SUBJECT));
     }
 
     @Test
-    public void shouldGetValidSubjectFromGradeBook() {
+    void shouldGetValidSubjectFromGradeBook() {
         Subject subject = gradeBookWithSubject.getSubject(SUBJECT);
         assertEquals(SUBJECT, subject.getName());
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void shouldntAllowToGetNonExistingSubject() {
+    @Test
+    void shouldntAllowToGetNonExistingSubject() {
         GradeBook gradeBook = new GradeBook();
-        gradeBook.getSubject(SUBJECT);
+        assertThrows(IllegalArgumentException.class, () -> gradeBook.getSubject(SUBJECT));
     }
 
     @Test
-    public void shouldBeAbleToAddNote() {
+    void shouldBeAbleToAddNote() {
         gradeBookWithSubject.addNote(SUBJECT, 4.5);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void shouldntAllowToAddANoteToNonExistingSubject() {
+    @Test
+    void shouldntAllowToAddANoteToNonExistingSubject() {
         GradeBook gradeBook = new GradeBook();
-        gradeBook.addNote(SUBJECT, 4.5);
+        assertThrows(IllegalArgumentException.class, () -> gradeBook.addNote(SUBJECT, 4.5));
     }
 
     @Test
-    public void shouldComputeGlobalAverageNote()  {
+    void shouldComputeGlobalAverageNote()  {
         gradeBookWithSubject.addSubject(OTHER_SUBJECT);
         gradeBookWithSubject.addNote(SUBJECT, 3);
         gradeBookWithSubject.addNote(SUBJECT, 5);
