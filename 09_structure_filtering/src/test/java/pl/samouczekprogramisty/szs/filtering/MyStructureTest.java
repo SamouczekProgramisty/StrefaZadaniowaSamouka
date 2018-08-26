@@ -1,6 +1,5 @@
 package pl.samouczekprogramisty.szs.filtering;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +11,6 @@ class MyStructureTest {
 
     private static final Node NODE1 = new Node("code1", "renderer1");
     private static final Node NODE2 = new Node("code2", "renderer2");
-    private static final Node NODE3 = new Node("code3", "renderer3");
 
     private MyStructure emptyStructure;
     private MyStructure filledStructure;
@@ -24,7 +22,6 @@ class MyStructureTest {
         filledStructure = new MyStructure();
         filledStructure.addNode(NODE1);
         filledStructure.addNode(NODE2);
-        filledStructure.addNode(NODE3);
     }
 
     @Test
@@ -76,4 +73,5 @@ class MyStructureTest {
     void shouldntAcceptNullAsRenderer() {
         assertThrows(IllegalArgumentException.class, () -> emptyStructure.findByRenderer(null));
     }
+
 }
