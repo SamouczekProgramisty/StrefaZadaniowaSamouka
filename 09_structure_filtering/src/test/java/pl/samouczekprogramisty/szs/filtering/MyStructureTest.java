@@ -8,58 +8,64 @@ import static org.hamcrest.Matchers.*;
 
 class MyStructureTest {
 
-    private MyStructure structure;
+    private static final Node NODE1 = new Node("code1", "renderer1");
+    private static final Node NODE2 = new Node("code2", "renderer2");
+    private static final Node NODE3 = new Node("code3", "renderer3");
+
+    private MyStructure emptyStructure;
+    private MyStructure filledStructure;
 
     @BeforeEach
     void setUp() {
-        structure = new MyStructure();
+        emptyStructure = new MyStructure();
+
+        filledStructure = new MyStructure();
+        filledStructure.addNode(NODE1);
+        filledStructure.addNode(NODE2);
+        filledStructure.addNode(NODE3);
     }
 
     @Test
     void shouldBeAbleToInstantiateClass() {
-        assertThat(structure, notNullValue());
+        assertThat(emptyStructure, notNullValue());
     }
 
     @Test
     void shouldReturnNullWhenNotFoundByCodeAndStructureIsEmpty() {
-        assertThat(structure.findByCode("xxx"), is(nullValue()));
+        assertThat(emptyStructure.findByCode("xxx"), is(nullValue()));
     }
 
     @Test
     void shouldReturnNullWhenNotFoundByRendererAndStructureIsEmpty() {
-        assertThat(structure.findByRenderer("xxx"), is(nullValue()));
+        assertThat(emptyStructure.findByRenderer("xxx"), is(nullValue()));
     }
 
     @Test
     void shouldReturn0WhenStructureIsEmpty() {
-        assertThat(structure.count(), is(equalTo(0)));
+        assertThat(emptyStructure.count(), is(equalTo(0)));
     }
 
     @Test
     void shouldBeAbleToAddNodesToStructure() {
-        structure.addNode(new Node("code1", "renderer1"));
-        assertThat(structure.count(), is(1));
+        emptyStructure.addNode(new Node("code1", "renderer1"));
+        assertThat(emptyStructure.count(), is(1));
     }
 
     @Test
     void shouldReturnNullWhenNotFoundByCode() {
-        structure.addNode(new Node("code1", "renderer1"));
-        assertThat(structure.findByCode("code2"), is(nullValue()));
+        emptyStructure.addNode(new Node("code1", "renderer1"));
+        assertThat(emptyStructure.findByCode("code2"), is(nullValue()));
     }
 
     @Test
     void shouldReturnNullWhenNotFoundByRenderer() {
-        structure.addNode(new Node("code1", "renderer1"));
-        assertThat(structure.findByRenderer("renderer2"), is(nullValue()));
+        emptyStructure.addNode(new Node("code1", "renderer1"));
+        assertThat(emptyStructure.findByRenderer("renderer2"), is(nullValue()));
     }
 
     @Test
     void shouldReturnNodeFoundByCode() {
-        structure.addNode(new Node("code1", "renderer1"));
-        Node node = new Node("code2", "renderer2");
-        structure.addNode(node);
-        structure.addNode(new Node("code3", "renderer3"));
-        assertThat(structure.findByCode("code2"), is(sameInstance(node)));
+        assertThat(filledStructure.findByCode("code2"), is(sameInstance(NODE2)));
     }
 
 }
