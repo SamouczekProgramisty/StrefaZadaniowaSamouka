@@ -1,5 +1,6 @@
 package pl.samouczekprogramisty.szs.filtering;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,14 @@ class MyStructureTest {
     private MyStructure emptyStructure;
     private MyStructure filledStructure;
 
+    @BeforeAll
+    static void setUpClass() {
+        COMPOSITE_NODE3.addNode(NODE4);
+        COMPOSITE_NODE3.addNode(COMPOSITE_NODE5);
+
+        COMPOSITE_NODE5.addNode(NODE6);
+    }
+
     @BeforeEach
     void setUp() {
         emptyStructure = new MyStructure();
@@ -27,11 +36,6 @@ class MyStructureTest {
         filledStructure.addNode(NODE1);
         filledStructure.addNode(NODE2);
         filledStructure.addNode(COMPOSITE_NODE3);
-
-        COMPOSITE_NODE3.addNode(NODE4);
-        COMPOSITE_NODE3.addNode(COMPOSITE_NODE5);
-
-        COMPOSITE_NODE5.addNode(NODE6);
     }
 
     @Test
