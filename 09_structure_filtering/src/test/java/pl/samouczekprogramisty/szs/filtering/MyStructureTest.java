@@ -13,6 +13,8 @@ class MyStructureTest {
     private static final Node NODE2 = new Node("code2", "renderer2");
     private static final CompositeNode COMPOSITE_NODE3 = new CompositeNode("code3", "renderer3");
     private static final Node NODE4 = new Node("code4", "renderer4");
+    private static final CompositeNode COMPOSITE_NODE5 = new CompositeNode("code5", "renderer5");
+    private static final Node NODE6 = new Node("code6", "renderer6");
 
     private MyStructure emptyStructure;
     private MyStructure filledStructure;
@@ -27,6 +29,9 @@ class MyStructureTest {
         filledStructure.addNode(COMPOSITE_NODE3);
 
         COMPOSITE_NODE3.addNode(NODE4);
+        COMPOSITE_NODE3.addNode(COMPOSITE_NODE5);
+
+        COMPOSITE_NODE5.addNode(NODE6);
     }
 
     @Test
@@ -97,6 +102,16 @@ class MyStructureTest {
     @Test
     void shouldBeAbleToFindNestedNodeByRenderer() {
         assertThat(filledStructure.findByRenderer("renderer4"), is(NODE4));
+    }
+
+    @Test
+    void shouldBeAbleToFindMultipleNestedNodeByCode() {
+        assertThat(filledStructure.findByCode("code6"), is(NODE6));
+    }
+
+    @Test
+    void shouldBeAbleToFindMultipleNestedNodeByRenderer() {
+        assertThat(filledStructure.findByRenderer("renderer6"), is(NODE6));
     }
 
 }
