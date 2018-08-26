@@ -3,18 +3,10 @@ package pl.samouczekprogramisty.szs.filtering;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 
 public class MyStructure implements IMyStructure {
     private final List<INode> nodes = new LinkedList<>();
-
-    private static Stream<INode> toStream(INode node) {
-        if (node instanceof ICompositeNode) {
-            return ((ICompositeNode) node).getNodes().stream();
-        }
-        return Stream.of(node);
-    }
 
     @Override
     public INode findByCode(String code) {
@@ -22,7 +14,7 @@ public class MyStructure implements IMyStructure {
             throw new IllegalArgumentException("Code is null!");
         }
         return nodes.stream()
-                .flatMap(MyStructure::toStream)
+                .flatMap(INode::toStream)
                 .filter(n -> code.equals(n.getCode()))
                 .findFirst()
                 .orElse(null);
@@ -34,6 +26,7 @@ public class MyStructure implements IMyStructure {
             throw new IllegalArgumentException("Renderer is null!");
         }
         return nodes.stream()
+                .flatMap(INode::toStream)
                 .filter(n -> renderer.equals(n.getRenderer()))
                 .findFirst()
                 .orElse(null);

@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class CompositeNode extends Node implements ICompositeNode {
 
@@ -20,6 +21,14 @@ public class CompositeNode extends Node implements ICompositeNode {
 
     public void addNode(INode node) {
         nodes.add(node);
+    }
+
+    @Override
+    public Stream<INode> toStream() {
+        return Stream.concat(
+                super.toStream(),
+                nodes.stream().flatMap(INode::toStream)
+        );
     }
 
     @Override

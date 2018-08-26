@@ -94,4 +94,9 @@ class MyStructureTest {
         assertThat(filledStructure.findByCode("code4"), is(NODE4));
     }
 
+    @Test
+    void shouldBeAbleToFindNestedNodeByRenderer() {
+        assertThat(filledStructure.findByRenderer("renderer4"), is(NODE4));
+    }
+
 }

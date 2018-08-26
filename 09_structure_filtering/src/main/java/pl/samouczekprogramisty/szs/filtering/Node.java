@@ -1,6 +1,7 @@
 package pl.samouczekprogramisty.szs.filtering;
 
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class Node implements INode {
     private final String code;
@@ -19,6 +20,11 @@ public class Node implements INode {
     @Override
     public String getRenderer() {
         return renderer;
+    }
+
+    @Override
+    public Stream<INode> toStream() {
+        return Stream.of(this);
     }
 
     @Override
