@@ -9,6 +9,9 @@ public class MyStructure implements IMyStructure {
 
     @Override
     public INode findByCode(String code) {
+        if (code == null) {
+            throw new IllegalArgumentException("Code is null!");
+        }
         return nodes.stream()
                 .filter(n -> code.equals(n.getCode()))
                 .findFirst()
@@ -17,7 +20,13 @@ public class MyStructure implements IMyStructure {
 
     @Override
     public INode findByRenderer(String renderer) {
-        return null;
+        if (renderer == null) {
+            throw new IllegalArgumentException("Renderer is null!");
+        }
+        return nodes.stream()
+                .filter(n -> renderer.equals(n.getRenderer()))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override

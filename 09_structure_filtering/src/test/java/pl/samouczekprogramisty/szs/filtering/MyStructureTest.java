@@ -1,10 +1,12 @@
 package pl.samouczekprogramisty.szs.filtering;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MyStructureTest {
 
@@ -66,6 +68,21 @@ class MyStructureTest {
     @Test
     void shouldReturnNodeFoundByCode() {
         assertThat(filledStructure.findByCode("code2"), is(sameInstance(NODE2)));
+    }
+
+    @Test
+    void shouldReturnNodeFoundByRenderer() {
+        assertThat(filledStructure.findByRenderer("renderer2"), is(sameInstance(NODE2)));
+    }
+
+    @Test
+    void shouldntAcceptNullAsCode() {
+        assertThrows(IllegalArgumentException.class, () -> emptyStructure.findByCode(null));
+    }
+
+    @Test
+    void shouldntAcceptNullAsRenderer() {
+        assertThrows(IllegalArgumentException.class, () -> emptyStructure.findByRenderer(null));
     }
 
 }
