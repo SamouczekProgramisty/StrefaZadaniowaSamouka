@@ -3,6 +3,7 @@ package pl.samouczekprogramisty.szs.filtering;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 
 public class MyStructure implements IMyStructure {
@@ -13,11 +14,7 @@ public class MyStructure implements IMyStructure {
         if (code == null) {
             throw new IllegalArgumentException("Code is null!");
         }
-        return nodes.stream()
-                .flatMap(INode::toStream)
-                .filter(n -> code.equals(n.getCode()))
-                .findFirst()
-                .orElse(null);
+        return findByPredicate(n -> code.equals(n.getCode()));
     }
 
     @Override
@@ -25,9 +22,13 @@ public class MyStructure implements IMyStructure {
         if (renderer == null) {
             throw new IllegalArgumentException("Renderer is null!");
         }
+        return findByPredicate(n -> renderer.equals(n.getRenderer()));
+    }
+
+    private INode findByPredicate(Predicate<INode> predicate) {
         return nodes.stream()
                 .flatMap(INode::toStream)
-                .filter(n -> renderer.equals(n.getRenderer()))
+                .filter(predicate)
                 .findFirst()
                 .orElse(null);
     }
