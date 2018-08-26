@@ -1,31 +1,19 @@
 package pl.samouczekprogramisty.szs.filtering;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
-public class CompositeNode implements ICompositeNode {
+public class CompositeNode extends Node implements ICompositeNode {
 
-    private String code;
-    private String renderer;
-    private List<INode> nodes;
+    private List<INode> nodes = new LinkedList<>();
 
     public CompositeNode(String code, String renderer) {
-        this.code = code;
-        this.renderer = renderer;
+        super(code, renderer);
     }
 
     @Override
     public List<INode> getNodes() {
         return Collections.unmodifiableList(nodes);
-    }
-
-    @Override
-    public String getCode() {
-        return code;
-    }
-
-    @Override
-    public String getRenderer() {
-        return renderer;
     }
 }
