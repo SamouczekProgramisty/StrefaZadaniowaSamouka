@@ -114,4 +114,9 @@ class MyStructureTest {
         assertThat(filledStructure.findByRenderer("renderer6"), is(NODE6));
     }
 
+    @Test
+    void shouldHandleCountProperlyWithNestedStructure() {
+        assertThat(filledStructure.count(), is(6));
+    }
+
 }

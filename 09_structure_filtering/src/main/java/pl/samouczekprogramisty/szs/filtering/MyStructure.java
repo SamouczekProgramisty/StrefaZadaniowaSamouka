@@ -35,7 +35,7 @@ public class MyStructure implements IMyStructure {
 
     @Override
     public int count() {
-        return nodes.size();
+        return (int) nodes.stream().flatMap(INode::toStream).count();
     }
 
     public void addNode(Node node) {
