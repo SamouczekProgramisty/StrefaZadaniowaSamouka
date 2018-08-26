@@ -48,21 +48,13 @@ class MyStructureTest {
     }
 
     @Test
-    void shouldBeAbleToAddNodesToStructure() {
-        emptyStructure.addNode(new Node("code1", "renderer1"));
-        assertThat(emptyStructure.count(), is(1));
-    }
-
-    @Test
     void shouldReturnNullWhenNotFoundByCode() {
-        emptyStructure.addNode(new Node("code1", "renderer1"));
-        assertThat(emptyStructure.findByCode("code2"), is(nullValue()));
+        assertThat(filledStructure.findByCode("missingCode"), is(nullValue()));
     }
 
     @Test
     void shouldReturnNullWhenNotFoundByRenderer() {
-        emptyStructure.addNode(new Node("code1", "renderer1"));
-        assertThat(emptyStructure.findByRenderer("renderer2"), is(nullValue()));
+        assertThat(filledStructure.findByRenderer("missingRenderer"), is(nullValue()));
     }
 
     @Test
@@ -84,5 +76,4 @@ class MyStructureTest {
     void shouldntAcceptNullAsRenderer() {
         assertThrows(IllegalArgumentException.class, () -> emptyStructure.findByRenderer(null));
     }
-
 }
