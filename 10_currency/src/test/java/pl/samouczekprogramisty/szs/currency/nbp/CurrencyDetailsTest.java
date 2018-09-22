@@ -9,14 +9,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 
-class CurrencyDetailsTest {
+public class CurrencyDetailsTest {
+
+    public static final String SAMPLE_RESPONSE = "{\"table\":\"A\",\"currency\":\"dolar amerykański\",\"code\":\"USD\",\"rates\":[{\"no\":\"174/A/NBP/2018\",\"effectiveDate\":\"2018-09-07\",\"mid\":3.6995}]}";
 
     private static CurrencyDetails instance;
 
     @BeforeAll
     static void parseResponse() {
-        String json = "{\"table\":\"A\",\"currency\":\"dolar amerykański\",\"code\":\"USD\",\"rates\":[{\"no\":\"174/A/NBP/2018\",\"effectiveDate\":\"2018-09-07\",\"mid\":3.6995}]}";
-        instance = JsonbBuilder.create().fromJson(json, CurrencyDetails.class);
+        instance = JsonbBuilder.create().fromJson(SAMPLE_RESPONSE, CurrencyDetails.class);
     }
 
     @Test

@@ -1,45 +1,48 @@
 package pl.samouczekprogramisty.szs.currency;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Tag;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.samouczekprogramisty.szs.currency.nbp.CurrencyDetailsTest;
 
+import javax.json.bind.JsonbBuilder;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.*;
 
-@Tag("integration")
 class NbpApiTest {
 
-    private static NbpApi api;
+    private ConnectionFactory factoryMock;
+    private HttpConnection connectionMock;
+    private NbpApi api;
 
-    @BeforeAll
-    static void setUpClass() {
-        api = new NbpApi();
+    @BeforeEach
+    void setUp() {
+        factoryMock = mock(ConnectionFactory.class);
+        connectionMock = mock(HttpConnection.class);
+        when(factoryMock.build(anyString())).thenReturn(connectionMock);
+
+        api = new NbpApi(factoryMock, JsonbBuilder.create());
     }
 
     @Test
-    void shouldRequestURLWhenFetchingExchangeRate() {
-        LocalDate exchangeDate = LocalDate.of(2018, 9, 7);
-        assertThat(api.exchangeRate(exchangeDate, "USD"), is(new BigDecimal("3.6995")));
+    void shouldReturnValidExchangeRate() {
+        when(connectionMock.response()).thenReturn(CurrencyDetailsTest.SAMPLE_RESPONSE);
+
+        BigDecimal rate = api.exchangeRate(LocalDate.of(2018, 9, 7), "USD");
+        MatcherAssert.assertThat(rate, Matchers.is(new BigDecimal("3.6995")));
     }
 
     @Test
-    void shouldThrowExceptionWhenResponseHasCodeOtherThan200() {
-        LocalDate tooEarlyDate = LocalDate.of(18, 9, 7);
-        ApiException exception = assertThrows(ApiException.class, () -> api.exchangeRate(tooEarlyDate, "USD"));
-        // "Bark danych" ;)
-        assertThat(exception.getMessage(), is("Something went wrong! [404] Bark danych / No data available"));
-    }
+    void shouldAttemptToConnectToRightUrl() {
+        when(connectionMock.response()).thenReturn(CurrencyDetailsTest.SAMPLE_RESPONSE);
 
-    @Test
-    void shouldThrowExceptionWhenResponseHasCodeOtherThan2001() {
-        String illegalCurrencyCode = "peelen";
-        ApiException exception = assertThrows(ApiException.class, () -> api.exchangeRate(LocalDate.of(2018, 9, 7), illegalCurrencyCode));
-        assertThat(exception.getMessage(), is("Something went wrong! [404] Not Found"));
+        api.exchangeRate(LocalDate.of(2018, 9, 7), "USD");
+
+        verify(factoryMock).build("http://api.nbp.pl/api/exchangerates/rates/a/USD/2018-09-07");
     }
 
 }
