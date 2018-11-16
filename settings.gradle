@@ -11,3 +11,5 @@ include '07_missing_element'
 include '08_cyclic_number'
 include '09_structure_filtering'
 include '10_currency'
+include '11_abacus'
+
