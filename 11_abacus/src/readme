@@ -1,9 +1,9 @@
 Napisz program, który zwróci wynik otrzymany na podstawie zestawu instrukcji.
-Instrukcje składają się ze słowa kluczowego i liczby oddzielonych spacją.
++ Instrukcje składają się ze słowa kluczowego i liczby oddzielonych spacją.
 Instrukcje oddzielone są znakiem nowej linii.
 Zestaw instrukcji pobierany jest z pliku, a wynik obliczeń powinien być wypisany na ekranie.
 Plik może zawierać dowolną liczbę instrukcji.
-Instrukcje mogą być dowolną operacją przyjmującą dwa argumenty (np. add, subtract, multiply, divide itp.).
++ Instrukcje mogą być dowolną operacją przyjmującą dwa argumenty (np. add, subtract, multiply, divide itp.).
 Instrukcje powinny być intepretowane w kolejności wprowadzenia (kolejność operecji w matematyce powinna być ignorowana).
 Ostatnią instrukcją powinna być apply i liczba. Na przykład apply 3.
 Ta liczba powinna być użyta w trakcie tworzenia instancji kalkulatora.
