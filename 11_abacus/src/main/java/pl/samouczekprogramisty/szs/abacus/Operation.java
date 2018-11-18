@@ -23,7 +23,9 @@ public enum Operation {
 
     public static Function<BigDecimal, BigDecimal> parse(String line) {
         String[] tokens = line.split(" ");
-        assert tokens.length == 2;
+        if (tokens.length != 2) {
+            throw new IllegalArgumentException("Line (" + line + ") has illegal format!");
+        }
         BigDecimal operand = new BigDecimal(tokens[1]);
         return x -> Operation.valueOf(tokens[0].toUpperCase()).apply(x, operand);
     }

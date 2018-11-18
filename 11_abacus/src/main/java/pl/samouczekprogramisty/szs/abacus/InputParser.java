@@ -8,7 +8,11 @@ public class InputParser {
     public static Calculator parse(LinkedList<String> fileLines) {
         String lastLine = fileLines.peekLast();
         String[] tokens = lastLine.split(" ");
-        assert tokens[0].toUpperCase().equals("APPLY");
+
+
+        if (!tokens[0].toUpperCase().equals("APPLY")) {
+            throw new IllegalArgumentException("Last line (" + lastLine + ") doesn't contain APPLY instruction!");
+        }
 
         Calculator calculator = new Calculator(new BigDecimal(tokens[1]));
 
