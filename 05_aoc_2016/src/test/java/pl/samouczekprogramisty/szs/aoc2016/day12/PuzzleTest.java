@@ -1,10 +1,11 @@
 package pl.samouczekprogramisty.szs.aoc2016.day12;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pl.samouczekprogramisty.szs.aoc2016.InputFileReader;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PuzzleTest {
     @Test
@@ -16,7 +17,7 @@ public class PuzzleTest {
         emulator.run();
 
         Register register = registers.getRegister("a");
-        Assert.assertEquals(Integer.valueOf(318117), register.getValue());
+        assertEquals(Integer.valueOf(318117), register.getValue());
     }
 
     @Test
@@ -30,6 +31,6 @@ public class PuzzleTest {
         emulator.run();
 
         Register register = emulator.getRegisters().getRegister("a");
-        Assert.assertEquals(Integer.valueOf(9227771), register.getValue());
+        assertEquals(Integer.valueOf(9227771), register.getValue());
     }
 }

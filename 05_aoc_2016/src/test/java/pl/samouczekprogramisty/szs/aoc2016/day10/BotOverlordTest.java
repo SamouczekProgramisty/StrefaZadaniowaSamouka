@@ -1,18 +1,18 @@
 package pl.samouczekprogramisty.szs.aoc2016.day10;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class BotOverlordTest {
     private static BotOverlord overlord;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
         List<String> instructions = Arrays.asList(
                 "value 5 goes to bot 2",

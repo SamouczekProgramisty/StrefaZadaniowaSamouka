@@ -1,16 +1,15 @@
 package pl.samouczekprogramisty.szs.aoc2016.day21;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PasswordScramblerTest {
 
     private PasswordScrambler scrambler;
 
-    @Before
-    public void setUp() {
+    @BeforeEach    public void setUp() {
         scrambler = new PasswordScrambler("abcde");
     }
 

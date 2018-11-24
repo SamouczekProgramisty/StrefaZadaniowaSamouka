@@ -1,6 +1,6 @@
 package pl.samouczekprogramisty.szs.aoc2016.day22;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pl.samouczekprogramisty.szs.aoc2016.InputFileReader;
 
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NodeTest {
     @Test

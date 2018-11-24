@@ -1,12 +1,12 @@
 package pl.samouczekprogramisty.szs.aoc2016.day11;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pl.samouczekprogramisty.szs.aoc2016.day11.solution.Move;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 
 public class FloorTest {

@@ -1,15 +1,15 @@
 package pl.samouczekprogramisty.szs.aoc2016.day20;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class IpRangeFinderTest {
 
     private IpRangeFinder rangeFinder;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         rangeFinder = new IpRangeFinder(IpRange.parse("5-8"), IpRange.parse("0-2"), IpRange.parse("4-7"));
     }

@@ -1,9 +1,10 @@
 package pl.samouczekprogramisty.szs.aoc2016.day04;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pl.samouczekprogramisty.szs.aoc2016.day04.exception.InvalidRoomNameException;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RoomNameDecoderTest {
     @Test
@@ -27,9 +28,9 @@ public class RoomNameDecoderTest {
         assertEquals("not-a-real-room", decoder.getRoomName());
     }
 
-    @Test(expected = InvalidRoomNameException.class)
+    @Test
     public void shouldBeAbleToParseEncodedRoom4() {
-        new RoomNameDecoder("totally-real-room-200[decoy]");
+        assertThrows(InvalidRoomNameException.class, () -> new RoomNameDecoder("totally-real-room-200[decoy]"));
     }
 
     @Test

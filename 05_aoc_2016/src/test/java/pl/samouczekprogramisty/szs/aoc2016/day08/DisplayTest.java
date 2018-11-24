@@ -1,15 +1,11 @@
 package pl.samouczekprogramisty.szs.aoc2016.day08;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Created by mapi on 09.12.16.
- */
 public class DisplayTest {
 
     @Test

@@ -1,18 +1,18 @@
 package pl.samouczekprogramisty.szs.aoc2016.day20;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import pl.samouczekprogramisty.szs.aoc2016.InputFileReader;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PuzzleTest {
     private static IpRangeFinder rangeFinder;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
         System.out.println(Integer.MAX_VALUE);
         System.out.println("2365712272");

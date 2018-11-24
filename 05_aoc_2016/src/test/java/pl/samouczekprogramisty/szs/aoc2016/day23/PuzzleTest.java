@@ -1,21 +1,21 @@
 package pl.samouczekprogramisty.szs.aoc2016.day23;
 
 
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import pl.samouczekprogramisty.szs.aoc2016.InputFileReader;
 import pl.samouczekprogramisty.szs.aoc2016.day12.Register;
 import pl.samouczekprogramisty.szs.aoc2016.day12.Registers;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PuzzleTest {
     private static List<String> instructions;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
         instructions = InputFileReader.readFileAsLines("day23_input.txt");
     }
@@ -33,7 +33,7 @@ public class PuzzleTest {
     }
 
     @Test
-    @Ignore("takes too long to finish")
+    @Disabled("takes too long to finish")
     public void shouldSolvePuzzle2() {
         Registers registers = new Registers();
         registers.getRegister("a").setValue(12);

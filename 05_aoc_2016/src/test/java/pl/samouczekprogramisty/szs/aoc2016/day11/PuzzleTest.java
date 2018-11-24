@@ -1,13 +1,13 @@
 package pl.samouczekprogramisty.szs.aoc2016.day11;
 
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import pl.samouczekprogramisty.szs.aoc2016.day11.solution.SolutionFinder;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PuzzleTest {
     private static final Generator THULIUM_G = new Generator("thulium");
@@ -41,7 +41,7 @@ public class PuzzleTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void shouldSolvePuzzleStep2() {
         Building building = new Building(
             0,

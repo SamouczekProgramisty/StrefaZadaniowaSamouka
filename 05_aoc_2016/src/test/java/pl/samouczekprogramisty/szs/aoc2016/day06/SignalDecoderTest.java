@@ -1,17 +1,17 @@
 package pl.samouczekprogramisty.szs.aoc2016.day06;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SignalDecoderTest {
     private static List<String> input;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
         input = Arrays.asList(
                 "eedadn", "drvtee", "eandsr", "raavrd",

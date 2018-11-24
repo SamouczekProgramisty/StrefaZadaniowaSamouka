@@ -1,13 +1,13 @@
 package pl.samouczekprogramisty.szs.aoc2016.day04;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pl.samouczekprogramisty.szs.aoc2016.InputFileReader;
 import pl.samouczekprogramisty.szs.aoc2016.day04.exception.InvalidRoomNameException;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PuzzleTest {
     @Test

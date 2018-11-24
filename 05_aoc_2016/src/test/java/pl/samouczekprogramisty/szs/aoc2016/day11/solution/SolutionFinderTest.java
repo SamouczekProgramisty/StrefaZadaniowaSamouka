@@ -1,13 +1,14 @@
 package pl.samouczekprogramisty.szs.aoc2016.day11.solution;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pl.samouczekprogramisty.szs.aoc2016.day11.Building;
 import pl.samouczekprogramisty.szs.aoc2016.day11.Floor;
 import pl.samouczekprogramisty.szs.aoc2016.day11.Generator;
 import pl.samouczekprogramisty.szs.aoc2016.day11.Microchip;
 
 import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class SolutionFinderTest {
@@ -28,6 +29,6 @@ public class SolutionFinderTest {
                 )
         );
 
-        Assert.assertEquals(Integer.valueOf(11), SolutionFinder.minimumNumberOfStepsRequired(building));
+        assertEquals(Integer.valueOf(11), SolutionFinder.minimumNumberOfStepsRequired(building));
     }
 }

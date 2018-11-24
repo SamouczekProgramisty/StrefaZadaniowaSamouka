@@ -1,9 +1,9 @@
 package pl.samouczekprogramisty.szs.aoc2016;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,12 +45,18 @@ public class InputFileReader {
     }
 
     private static File getInputFile(String fileName) {
-        return new File(
-                "src" + File.separator +
-                "main" + File.separator +
-                "test" + File.separator +
-                "resources" + File.separator +
-                fileName
-        );
+        String x = File.separator + ".." + File.separator + "resources" + File.separator +
+                fileName;
+
+
+
+        Path y = Paths.get("..", "resources", fileName);
+        System.out.println(y.isAbsolute());
+        System.out.println(y.getRoot());
+        System.out.println(y.normalize().toAbsolutePath());
+        System.out.println(fileName);
+        InputStream fileUrl = InputFileReader.class.getResourceAsStream(fileName);
+        System.out.println(fileUrl);
+        return new File(fileUrl.toString());
     }
 }
