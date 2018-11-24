@@ -1,8 +1,8 @@
 package pl.samouczekprogramisty.szs.aoc2016.day02;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FancyKeypadTest {
     @Test

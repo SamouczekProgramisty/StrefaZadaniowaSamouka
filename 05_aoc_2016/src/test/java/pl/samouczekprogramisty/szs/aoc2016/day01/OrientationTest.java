@@ -1,14 +1,13 @@
 package pl.samouczekprogramisty.szs.aoc2016.day01;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OrientationTest {
     @Test
     public void shouldBeAbleToTurnLeft() {
-        Assert.assertEquals(Orientation.WEST, Orientation.NORTH.turn(Orientation.Turn.LEFT));
+        assertEquals(Orientation.WEST, Orientation.NORTH.turn(Orientation.Turn.LEFT));
         assertEquals(Orientation.NORTH, Orientation.EAST.turn(Orientation.Turn.LEFT));
         assertEquals(Orientation.EAST, Orientation.SOUTH.turn(Orientation.Turn.LEFT));
         assertEquals(Orientation.SOUTH, Orientation.WEST.turn(Orientation.Turn.LEFT));

@@ -1,7 +1,7 @@
 package pl.samouczekprogramisty.szs.aoc2016.day25;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import pl.samouczekprogramisty.szs.aoc2016.InputFileReader;
 import pl.samouczekprogramisty.szs.aoc2016.day12.Registers;
 import pl.samouczekprogramisty.szs.aoc2016.day25.instructions.OutToggle;
@@ -9,12 +9,12 @@ import pl.samouczekprogramisty.szs.aoc2016.day25.instructions.StateAwareInstruct
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CycleAwareEmulatorTest {
     private static List<String> instructions;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
         instructions = InputFileReader.readFileAsLines("day25_input.txt");
     }

@@ -1,15 +1,14 @@
 package pl.samouczekprogramisty.szs.aoc2016.day01;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PathTest {
     @Test
     public void shouldBeAbleToParseEmptyPathSpecification() {
         Path path = Path.parse("");
-        Assert.assertEquals(new Coordinates(0, 0), path.getCurrentPoint());
+        assertEquals(new Coordinates(0, 0), path.getCurrentPoint());
     }
 
     @Test
