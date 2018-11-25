@@ -13,7 +13,7 @@ public class KeyFinderTest {
     }
 
     @Test
-    @Disabled
+    @Disabled("takes really long time to finish ;)")
     public void shouldPassProvidedTestCase2() {
         KeyFinder keyFinder = new KeyFinder("abc");
         assertEquals(22551, keyFinder.getIndexOfEnhancedKey(64));

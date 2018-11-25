@@ -45,18 +45,8 @@ public class InputFileReader {
     }
 
     private static File getInputFile(String fileName) {
-        String x = File.separator + ".." + File.separator + "resources" + File.separator +
-                fileName;
-
-
-
-        Path y = Paths.get("..", "resources", fileName);
-        System.out.println(y.isAbsolute());
-        System.out.println(y.getRoot());
-        System.out.println(y.normalize().toAbsolutePath());
-        System.out.println(fileName);
-        InputStream fileUrl = InputFileReader.class.getResourceAsStream(fileName);
-        System.out.println(fileUrl);
-        return new File(fileUrl.toString());
+        String resourceLocation = File.separator + fileName;
+        String resourcePath = InputFileReader.class.getResource(resourceLocation).getPath();
+        return new File(resourcePath);
     }
 }

@@ -41,7 +41,7 @@ public class PuzzleTest {
     }
 
     @Test
-    @Disabled
+    @Disabled("unsolvable with current algorithm")
     public void shouldSolvePuzzleStep2() {
         Building building = new Building(
             0,

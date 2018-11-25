@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 public class PuzzleTest {
     @Test
-    @Disabled
     public void shouldFindPasswordForRoom() {
         DoorPasswordCracker cracker = new DoorPasswordCracker("abbhdwsy");
         System.out.println(cracker.getPassword());

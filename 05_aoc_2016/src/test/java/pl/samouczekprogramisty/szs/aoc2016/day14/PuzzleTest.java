@@ -13,7 +13,7 @@ public class PuzzleTest {
     }
 
     @Test
-    @Disabled
+    @Disabled("takse ~2m to finish")
     public void shouldSolvePuzzleStep2() {
         KeyFinder keyFinder = new KeyFinder("yjdafjpo");
         assertEquals(22045, keyFinder.getIndexOfEnhancedKey(64));
