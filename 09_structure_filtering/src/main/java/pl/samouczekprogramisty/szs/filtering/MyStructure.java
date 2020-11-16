@@ -11,7 +11,10 @@ public class MyStructure implements IMyStructure {
     private final List<INode> nodes = new LinkedList<>();
     
     public MyStructure(INode... nodes) {
-		Arrays.asList(nodes).stream().forEach(node -> this.nodes.add(node));
+    	List<INode> nodeList = Arrays.asList(nodes);
+    	nodeList.forEach(node -> {
+    			this.addNode((Node)node);
+			});
 	}
 
     @Override
@@ -37,14 +40,23 @@ public class MyStructure implements IMyStructure {
                 .findFirst()
                 .orElse(null);
     }
+    
+    public void addAllNodes(List<INode> nodes) {
+    	nodes.forEach(node -> this.addNode(node));
+    }
 
     @Override
     public int count() {
         return (int) nodes.stream().flatMap(INode::toStream).count();
     }
 
-    public void addNode(Node node) {
-        nodes.add(node);
+    public void addNode(INode node) {
+    	if (this.nodes.stream().filter(innerNode -> !innerNode.isUnique(node)).count() > 0) {
+			throw new IllegalArgumentException(node + " is not unique");
+    	}
+    	else {
+            nodes.add(node);
+    	}
     }
 
     @Override

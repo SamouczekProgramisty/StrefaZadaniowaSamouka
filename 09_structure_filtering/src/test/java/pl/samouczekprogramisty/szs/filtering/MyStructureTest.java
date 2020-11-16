@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MyStructureTest {
@@ -120,4 +121,16 @@ class MyStructureTest {
         assertThat(filledStructure.count(), is(6));
     }
 
+    @Test
+    void shouldThrowExceptionOnCreatingWithTheSameNodes() {
+        assertThrows(IllegalArgumentException.class, () -> new MyStructure(NODE1, NODE1));
+    }
+
+    @Test
+    void shouldThrowExceptionOnAddingTheSameNode() {
+        assertThrows(IllegalArgumentException.class, () -> {
+        	emptyStructure.addNode(NODE1);
+        	emptyStructure.addNode(NODE1);
+        });
+    }
 }
