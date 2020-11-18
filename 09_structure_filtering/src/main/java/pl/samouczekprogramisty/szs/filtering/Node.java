@@ -3,28 +3,45 @@ package pl.samouczekprogramisty.szs.filtering;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
 public class Node implements INode {
-    @Getter private final String code;
-    @Getter private final String renderer;
+    private final String code;
+    private final String renderer;
+
+    public Node(String code, String renderer) {
+        this.code = code;
+        this.renderer = renderer;
+    }
+
+    @Override
+    public String getCode() {
+        return code;
+    }
+
+    @Override
+    public String getRenderer() {
+        return renderer;
+    }
 
     @Override
     public Stream<INode> toStream() {
         return Stream.of(this);
     }
 
-	@Override
-	public boolean isUnique(INode node) {
-		boolean hasDifferentCode = !node.getCode().equals(code);
-		boolean hasDifferentRender = !node.getRenderer().equals(renderer);
-		return hasDifferentCode || hasDifferentRender;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Node node = (Node) o;
+        return Objects.equals(code, node.code) &&
+                Objects.equals(renderer, node.renderer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, renderer);
+    }
 }

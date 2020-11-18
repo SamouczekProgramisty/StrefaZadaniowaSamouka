@@ -11,10 +11,5 @@ public interface INode {
      * Transforms node to a stream.
      */
     Stream<INode> toStream();
-
-    /**
-     * Checks if node attributes are unique
-     */
-    boolean isUnique(INode node);
 }
 
