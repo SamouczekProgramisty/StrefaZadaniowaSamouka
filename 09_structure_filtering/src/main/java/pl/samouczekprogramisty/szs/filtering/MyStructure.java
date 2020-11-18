@@ -11,7 +11,7 @@ public class MyStructure implements IMyStructure {
     private final List<INode> nodes = new LinkedList<>();
     
     public MyStructure(INode... nodes) {
-		Arrays.asList(nodes).stream().forEach(node -> this.nodes.add(node));
+		Arrays.stream(nodes).forEach(this::addNode);
 	}
 
     @Override
