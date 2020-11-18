@@ -1,5 +1,6 @@
 package pl.samouczekprogramisty.szs.filtering;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -8,6 +9,10 @@ import java.util.function.Predicate;
 
 public class MyStructure implements IMyStructure {
     private final List<INode> nodes = new LinkedList<>();
+    
+    public MyStructure(INode... nodes) {
+		Arrays.stream(nodes).forEach(this::addNode);
+	}
 
     @Override
     public INode findByCode(String code) {

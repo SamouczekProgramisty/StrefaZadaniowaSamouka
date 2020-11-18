@@ -32,10 +32,7 @@ class MyStructureTest {
     void setUp() {
         emptyStructure = new MyStructure();
 
-        filledStructure = new MyStructure();
-        filledStructure.addNode(NODE1);
-        filledStructure.addNode(NODE2);
-        filledStructure.addNode(COMPOSITE_NODE3);
+        filledStructure = new MyStructure(NODE1, NODE2, COMPOSITE_NODE3);
     }
 
     @Test
