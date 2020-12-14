@@ -43,7 +43,7 @@ public class MyStructure implements IMyStructure {
         return (int) nodes.stream().flatMap(INode::toStream).count();
     }
 
-    public void addNode(Node node) {
+    public void addNode(INode node) {
         nodes.add(node);
     }
 
