@@ -41,14 +41,14 @@ public final class CyclicNumberFinder {
         StringBuilder representation = new StringBuilder();
 
         int step = 0;
-        int reminder = 1;
+        int remainder = 1;
         do {
             step++;
-            int currentValueToDivide = reminder * base;
+            int currentValueToDivide = remainder * base;
             int currentDigit = currentValueToDivide / generatingPrime;
-            reminder = currentValueToDivide % generatingPrime;
+            remainder = currentValueToDivide % generatingPrime;
             representation.append(currentDigit);
-        } while (reminder != 1 && step < generatingPrime);
+        } while (remainder != 1 && step < generatingPrime);
 
         return number.equals(representation.toString());
     }
